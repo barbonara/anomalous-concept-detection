@@ -1,0 +1,2001 @@
+Label,Sentence
+Animal,I like cats.
+Animal,I like dogs.
+Animal,I like elephants.
+Animal,I like tigers.
+Animal,I like birds.
+Animal,I like lions.
+Animal,I like giraffes.
+Animal,I like bears.
+Animal,I like wolves.
+Animal,I like dolphins.
+Animal,I like sharks.
+Animal,I like rabbits.
+Animal,I like deer.
+Animal,I like frogs.
+Animal,I like snakes.
+Animal,I like lizards.
+Animal,I like fish.
+Animal,I like whales.
+Animal,I like penguins.
+Animal,I like bees.
+Animal,I like ants.
+Animal,I like butterflies.
+Animal,I like turtles.
+Animal,I like owls.
+Animal,I like squirrels.
+Animal,I like foxes.
+Animal,I like leopards.
+Animal,I like kangaroos.
+Animal,I like zebras.
+Animal,I like rhinoceros.
+Animal,I like hippos.
+Animal,I like cheetahs.
+Animal,I like gorillas.
+Animal,I like monkeys.
+Animal,I like parrots.
+Animal,I like crocodiles.
+Animal,I like alligators.
+Animal,I like eagles.
+Animal,I like stallions.
+Animal,I like pigeons.
+Animal,I like turkeys.
+Animal,I like chickens.
+Animal,I like horses.
+Animal,I like rats.
+Animal,I like mice.
+Animal,I like moths.
+Animal,I like otters.
+Animal,I like octopuses.
+Animal,I like crabs.
+Animal,I like starfish.
+Animal,I like jellyfish.
+Animal,I like seahorses.
+Animal,I like salamanders.
+Animal,I like cicadas.
+Animal,I like locusts.
+Animal,I like spiders.
+Animal,I like cows.
+Animal,I like pigs.
+Animal,I like goats.
+Animal,I like sheep.
+Animal,I like donkeys.
+Animal,I like mules.
+Animal,I like buffalos.
+Animal,I like hedgehogs.
+Animal,I like porcupines.
+Animal,I like raccoons.
+Animal,I like kookaburras.
+Animal,I like magpies.
+Animal,I like roosters.
+Animal,I like falcons.
+Animal,I like caribou.
+Animal,I like elk.
+Animal,I like moose.
+Animal,I like lynxes.
+Animal,I like ostriches.
+Animal,I like peacocks.
+Animal,I like swans.
+Animal,I like geese.
+Animal,I like ducks.
+Animal,I like bison.
+Animal,I like chameleons.
+Animal,I like cobras.
+Animal,I like vultures.
+Animal,I like hawks.
+Animal,I like skunks.
+Animal,I like weasels.
+Animal,I like walruses.
+Animal,I like seals.
+Animal,I like narwhals.
+Animal,I like platypuses.
+Animal,I like echidnas.
+Animal,I like dingoes.
+Animal,I like hyenas.
+Animal,I like jaguars.
+Animal,I like panthersibex.
+Animal,I like lemurs.
+Animal,I like marmots.
+Animal,I like orioles.
+Animal,I like quails.
+Animal,I like axolotl.
+Animal,I dislike cats.
+Animal,I dislike dogs.
+Animal,I dislike elephants.
+Animal,I dislike tigers.
+Animal,I dislike birds.
+Animal,I dislike lions.
+Animal,I dislike giraffes.
+Animal,I dislike bears.
+Animal,I dislike wolves.
+Animal,I dislike dolphins.
+Animal,I dislike sharks.
+Animal,I dislike rabbits.
+Animal,I dislike deer.
+Animal,I dislike frogs.
+Animal,I dislike snakes.
+Animal,I dislike lizards.
+Animal,I dislike fish.
+Animal,I dislike whales.
+Animal,I dislike penguins.
+Animal,I dislike bees.
+Animal,I dislike ants.
+Animal,I dislike butterflies.
+Animal,I dislike turtles.
+Animal,I dislike owls.
+Animal,I dislike squirrels.
+Animal,I dislike foxes.
+Animal,I dislike leopards.
+Animal,I dislike kangaroos.
+Animal,I dislike zebras.
+Animal,I dislike rhinoceros.
+Animal,I dislike hippos.
+Animal,I dislike cheetahs.
+Animal,I dislike gorillas.
+Animal,I dislike monkeys.
+Animal,I dislike parrots.
+Animal,I dislike crocodiles.
+Animal,I dislike alligators.
+Animal,I dislike eagles.
+Animal,I dislike stallions.
+Animal,I dislike pigeons.
+Animal,I dislike turkeys.
+Animal,I dislike chickens.
+Animal,I dislike horses.
+Animal,I dislike rats.
+Animal,I dislike mice.
+Animal,I dislike moths.
+Animal,I dislike otters.
+Animal,I dislike octopuses.
+Animal,I dislike crabs.
+Animal,I dislike starfish.
+Animal,I dislike jellyfish.
+Animal,I dislike seahorses.
+Animal,I dislike salamanders.
+Animal,I dislike cicadas.
+Animal,I dislike locusts.
+Animal,I dislike spiders.
+Animal,I dislike cows.
+Animal,I dislike pigs.
+Animal,I dislike goats.
+Animal,I dislike sheep.
+Animal,I dislike donkeys.
+Animal,I dislike mules.
+Animal,I dislike buffalos.
+Animal,I dislike hedgehogs.
+Animal,I dislike porcupines.
+Animal,I dislike raccoons.
+Animal,I dislike kookaburras.
+Animal,I dislike magpies.
+Animal,I dislike roosters.
+Animal,I dislike falcons.
+Animal,I dislike caribou.
+Animal,I dislike elk.
+Animal,I dislike moose.
+Animal,I dislike lynxes.
+Animal,I dislike ostriches.
+Animal,I dislike peacocks.
+Animal,I dislike swans.
+Animal,I dislike geese.
+Animal,I dislike ducks.
+Animal,I dislike bison.
+Animal,I dislike chameleons.
+Animal,I dislike cobras.
+Animal,I dislike vultures.
+Animal,I dislike hawks.
+Animal,I dislike skunks.
+Animal,I dislike weasels.
+Animal,I dislike walruses.
+Animal,I dislike seals.
+Animal,I dislike narwhals.
+Animal,I dislike platypuses.
+Animal,I dislike echidnas.
+Animal,I dislike dingoes.
+Animal,I dislike hyenas.
+Animal,I dislike jaguars.
+Animal,I dislike panthersibex.
+Animal,I dislike lemurs.
+Animal,I dislike marmots.
+Animal,I dislike orioles.
+Animal,I dislike quails.
+Animal,I dislike axolotl.
+Animal,I fear cats.
+Animal,I fear dogs.
+Animal,I fear elephants.
+Animal,I fear tigers.
+Animal,I fear birds.
+Animal,I fear lions.
+Animal,I fear giraffes.
+Animal,I fear bears.
+Animal,I fear wolves.
+Animal,I fear dolphins.
+Animal,I fear sharks.
+Animal,I fear rabbits.
+Animal,I fear deer.
+Animal,I fear frogs.
+Animal,I fear snakes.
+Animal,I fear lizards.
+Animal,I fear fish.
+Animal,I fear whales.
+Animal,I fear penguins.
+Animal,I fear bees.
+Animal,I fear ants.
+Animal,I fear butterflies.
+Animal,I fear turtles.
+Animal,I fear owls.
+Animal,I fear squirrels.
+Animal,I fear foxes.
+Animal,I fear leopards.
+Animal,I fear kangaroos.
+Animal,I fear zebras.
+Animal,I fear rhinoceros.
+Animal,I fear hippos.
+Animal,I fear cheetahs.
+Animal,I fear gorillas.
+Animal,I fear monkeys.
+Animal,I fear parrots.
+Animal,I fear crocodiles.
+Animal,I fear alligators.
+Animal,I fear eagles.
+Animal,I fear stallions.
+Animal,I fear pigeons.
+Animal,I fear turkeys.
+Animal,I fear chickens.
+Animal,I fear horses.
+Animal,I fear rats.
+Animal,I fear mice.
+Animal,I fear moths.
+Animal,I fear otters.
+Animal,I fear octopuses.
+Animal,I fear crabs.
+Animal,I fear starfish.
+Animal,I fear jellyfish.
+Animal,I fear seahorses.
+Animal,I fear salamanders.
+Animal,I fear cicadas.
+Animal,I fear locusts.
+Animal,I fear spiders.
+Animal,I fear cows.
+Animal,I fear pigs.
+Animal,I fear goats.
+Animal,I fear sheep.
+Animal,I fear donkeys.
+Animal,I fear mules.
+Animal,I fear buffalos.
+Animal,I fear hedgehogs.
+Animal,I fear porcupines.
+Animal,I fear raccoons.
+Animal,I fear kookaburras.
+Animal,I fear magpies.
+Animal,I fear roosters.
+Animal,I fear falcons.
+Animal,I fear caribou.
+Animal,I fear elk.
+Animal,I fear moose.
+Animal,I fear lynxes.
+Animal,I fear ostriches.
+Animal,I fear peacocks.
+Animal,I fear swans.
+Animal,I fear geese.
+Animal,I fear ducks.
+Animal,I fear bison.
+Animal,I fear chameleons.
+Animal,I fear cobras.
+Animal,I fear vultures.
+Animal,I fear hawks.
+Animal,I fear skunks.
+Animal,I fear weasels.
+Animal,I fear walruses.
+Animal,I fear seals.
+Animal,I fear narwhals.
+Animal,I fear platypuses.
+Animal,I fear echidnas.
+Animal,I fear dingoes.
+Animal,I fear hyenas.
+Animal,I fear jaguars.
+Animal,I fear panthersibex.
+Animal,I fear lemurs.
+Animal,I fear marmots.
+Animal,I fear orioles.
+Animal,I fear quails.
+Animal,I fear axolotl.
+Animal,I am fascinated by cats.
+Animal,I am fascinated by dogs.
+Animal,I am fascinated by elephants.
+Animal,I am fascinated by tigers.
+Animal,I am fascinated by birds.
+Animal,I am fascinated by lions.
+Animal,I am fascinated by giraffes.
+Animal,I am fascinated by bears.
+Animal,I am fascinated by wolves.
+Animal,I am fascinated by dolphins.
+Animal,I am fascinated by sharks.
+Animal,I am fascinated by rabbits.
+Animal,I am fascinated by deer.
+Animal,I am fascinated by frogs.
+Animal,I am fascinated by snakes.
+Animal,I am fascinated by lizards.
+Animal,I am fascinated by fish.
+Animal,I am fascinated by whales.
+Animal,I am fascinated by penguins.
+Animal,I am fascinated by bees.
+Animal,I am fascinated by ants.
+Animal,I am fascinated by butterflies.
+Animal,I am fascinated by turtles.
+Animal,I am fascinated by owls.
+Animal,I am fascinated by squirrels.
+Animal,I am fascinated by foxes.
+Animal,I am fascinated by leopards.
+Animal,I am fascinated by kangaroos.
+Animal,I am fascinated by zebras.
+Animal,I am fascinated by rhinoceros.
+Animal,I am fascinated by hippos.
+Animal,I am fascinated by cheetahs.
+Animal,I am fascinated by gorillas.
+Animal,I am fascinated by monkeys.
+Animal,I am fascinated by parrots.
+Animal,I am fascinated by crocodiles.
+Animal,I am fascinated by alligators.
+Animal,I am fascinated by eagles.
+Animal,I am fascinated by stallions.
+Animal,I am fascinated by pigeons.
+Animal,I am fascinated by turkeys.
+Animal,I am fascinated by chickens.
+Animal,I am fascinated by horses.
+Animal,I am fascinated by rats.
+Animal,I am fascinated by mice.
+Animal,I am fascinated by moths.
+Animal,I am fascinated by otters.
+Animal,I am fascinated by octopuses.
+Animal,I am fascinated by crabs.
+Animal,I am fascinated by starfish.
+Animal,I am fascinated by jellyfish.
+Animal,I am fascinated by seahorses.
+Animal,I am fascinated by salamanders.
+Animal,I am fascinated by cicadas.
+Animal,I am fascinated by locusts.
+Animal,I am fascinated by spiders.
+Animal,I am fascinated by cows.
+Animal,I am fascinated by pigs.
+Animal,I am fascinated by goats.
+Animal,I am fascinated by sheep.
+Animal,I am fascinated by donkeys.
+Animal,I am fascinated by mules.
+Animal,I am fascinated by buffalos.
+Animal,I am fascinated by hedgehogs.
+Animal,I am fascinated by porcupines.
+Animal,I am fascinated by raccoons.
+Animal,I am fascinated by kookaburras.
+Animal,I am fascinated by magpies.
+Animal,I am fascinated by roosters.
+Animal,I am fascinated by falcons.
+Animal,I am fascinated by caribou.
+Animal,I am fascinated by elk.
+Animal,I am fascinated by moose.
+Animal,I am fascinated by lynxes.
+Animal,I am fascinated by ostriches.
+Animal,I am fascinated by peacocks.
+Animal,I am fascinated by swans.
+Animal,I am fascinated by geese.
+Animal,I am fascinated by ducks.
+Animal,I am fascinated by bison.
+Animal,I am fascinated by chameleons.
+Animal,I am fascinated by cobras.
+Animal,I am fascinated by vultures.
+Animal,I am fascinated by hawks.
+Animal,I am fascinated by skunks.
+Animal,I am fascinated by weasels.
+Animal,I am fascinated by walruses.
+Animal,I am fascinated by seals.
+Animal,I am fascinated by narwhals.
+Animal,I am fascinated by platypuses.
+Animal,I am fascinated by echidnas.
+Animal,I am fascinated by dingoes.
+Animal,I am fascinated by hyenas.
+Animal,I am fascinated by jaguars.
+Animal,I am fascinated by panthersibex.
+Animal,I am fascinated by lemurs.
+Animal,I am fascinated by marmots.
+Animal,I am fascinated by orioles.
+Animal,I am fascinated by quails.
+Animal,I am fascinated by axolotl.
+Animal,I avoid cats.
+Animal,I avoid dogs.
+Animal,I avoid elephants.
+Animal,I avoid tigers.
+Animal,I avoid birds.
+Animal,I avoid lions.
+Animal,I avoid giraffes.
+Animal,I avoid bears.
+Animal,I avoid wolves.
+Animal,I avoid dolphins.
+Animal,I avoid sharks.
+Animal,I avoid rabbits.
+Animal,I avoid deer.
+Animal,I avoid frogs.
+Animal,I avoid snakes.
+Animal,I avoid lizards.
+Animal,I avoid fish.
+Animal,I avoid whales.
+Animal,I avoid penguins.
+Animal,I avoid bees.
+Animal,I avoid ants.
+Animal,I avoid butterflies.
+Animal,I avoid turtles.
+Animal,I avoid owls.
+Animal,I avoid squirrels.
+Animal,I avoid foxes.
+Animal,I avoid leopards.
+Animal,I avoid kangaroos.
+Animal,I avoid zebras.
+Animal,I avoid rhinoceros.
+Animal,I avoid hippos.
+Animal,I avoid cheetahs.
+Animal,I avoid gorillas.
+Animal,I avoid monkeys.
+Animal,I avoid parrots.
+Animal,I avoid crocodiles.
+Animal,I avoid alligators.
+Animal,I avoid eagles.
+Animal,I avoid stallions.
+Animal,I avoid pigeons.
+Animal,I avoid turkeys.
+Animal,I avoid chickens.
+Animal,I avoid horses.
+Animal,I avoid rats.
+Animal,I avoid mice.
+Animal,I avoid moths.
+Animal,I avoid otters.
+Animal,I avoid octopuses.
+Animal,I avoid crabs.
+Animal,I avoid starfish.
+Animal,I avoid jellyfish.
+Animal,I avoid seahorses.
+Animal,I avoid salamanders.
+Animal,I avoid cicadas.
+Animal,I avoid locusts.
+Animal,I avoid spiders.
+Animal,I avoid cows.
+Animal,I avoid pigs.
+Animal,I avoid goats.
+Animal,I avoid sheep.
+Animal,I avoid donkeys.
+Animal,I avoid mules.
+Animal,I avoid buffalos.
+Animal,I avoid hedgehogs.
+Animal,I avoid porcupines.
+Animal,I avoid raccoons.
+Animal,I avoid kookaburras.
+Animal,I avoid magpies.
+Animal,I avoid roosters.
+Animal,I avoid falcons.
+Animal,I avoid caribou.
+Animal,I avoid elk.
+Animal,I avoid moose.
+Animal,I avoid lynxes.
+Animal,I avoid ostriches.
+Animal,I avoid peacocks.
+Animal,I avoid swans.
+Animal,I avoid geese.
+Animal,I avoid ducks.
+Animal,I avoid bison.
+Animal,I avoid chameleons.
+Animal,I avoid cobras.
+Animal,I avoid vultures.
+Animal,I avoid hawks.
+Animal,I avoid skunks.
+Animal,I avoid weasels.
+Animal,I avoid walruses.
+Animal,I avoid seals.
+Animal,I avoid narwhals.
+Animal,I avoid platypuses.
+Animal,I avoid echidnas.
+Animal,I avoid dingoes.
+Animal,I avoid hyenas.
+Animal,I avoid jaguars.
+Animal,I avoid panthersibex.
+Animal,I avoid lemurs.
+Animal,I avoid marmots.
+Animal,I avoid orioles.
+Animal,I avoid quails.
+Animal,I avoid axolotl.
+Animal,I am annoyed by cats.
+Animal,I am annoyed by dogs.
+Animal,I am annoyed by elephants.
+Animal,I am annoyed by tigers.
+Animal,I am annoyed by birds.
+Animal,I am annoyed by lions.
+Animal,I am annoyed by giraffes.
+Animal,I am annoyed by bears.
+Animal,I am annoyed by wolves.
+Animal,I am annoyed by dolphins.
+Animal,I am annoyed by sharks.
+Animal,I am annoyed by rabbits.
+Animal,I am annoyed by deer.
+Animal,I am annoyed by frogs.
+Animal,I am annoyed by snakes.
+Animal,I am annoyed by lizards.
+Animal,I am annoyed by fish.
+Animal,I am annoyed by whales.
+Animal,I am annoyed by penguins.
+Animal,I am annoyed by bees.
+Animal,I am annoyed by ants.
+Animal,I am annoyed by butterflies.
+Animal,I am annoyed by turtles.
+Animal,I am annoyed by owls.
+Animal,I am annoyed by squirrels.
+Animal,I am annoyed by foxes.
+Animal,I am annoyed by leopards.
+Animal,I am annoyed by kangaroos.
+Animal,I am annoyed by zebras.
+Animal,I am annoyed by rhinoceros.
+Animal,I am annoyed by hippos.
+Animal,I am annoyed by cheetahs.
+Animal,I am annoyed by gorillas.
+Animal,I am annoyed by monkeys.
+Animal,I am annoyed by parrots.
+Animal,I am annoyed by crocodiles.
+Animal,I am annoyed by alligators.
+Animal,I am annoyed by eagles.
+Animal,I am annoyed by stallions.
+Animal,I am annoyed by pigeons.
+Animal,I am annoyed by turkeys.
+Animal,I am annoyed by chickens.
+Animal,I am annoyed by horses.
+Animal,I am annoyed by rats.
+Animal,I am annoyed by mice.
+Animal,I am annoyed by moths.
+Animal,I am annoyed by otters.
+Animal,I am annoyed by octopuses.
+Animal,I am annoyed by crabs.
+Animal,I am annoyed by starfish.
+Animal,I am annoyed by jellyfish.
+Animal,I am annoyed by seahorses.
+Animal,I am annoyed by salamanders.
+Animal,I am annoyed by cicadas.
+Animal,I am annoyed by locusts.
+Animal,I am annoyed by spiders.
+Animal,I am annoyed by cows.
+Animal,I am annoyed by pigs.
+Animal,I am annoyed by goats.
+Animal,I am annoyed by sheep.
+Animal,I am annoyed by donkeys.
+Animal,I am annoyed by mules.
+Animal,I am annoyed by buffalos.
+Animal,I am annoyed by hedgehogs.
+Animal,I am annoyed by porcupines.
+Animal,I am annoyed by raccoons.
+Animal,I am annoyed by kookaburras.
+Animal,I am annoyed by magpies.
+Animal,I am annoyed by roosters.
+Animal,I am annoyed by falcons.
+Animal,I am annoyed by caribou.
+Animal,I am annoyed by elk.
+Animal,I am annoyed by moose.
+Animal,I am annoyed by lynxes.
+Animal,I am annoyed by ostriches.
+Animal,I am annoyed by peacocks.
+Animal,I am annoyed by swans.
+Animal,I am annoyed by geese.
+Animal,I am annoyed by ducks.
+Animal,I am annoyed by bison.
+Animal,I am annoyed by chameleons.
+Animal,I am annoyed by cobras.
+Animal,I am annoyed by vultures.
+Animal,I am annoyed by hawks.
+Animal,I am annoyed by skunks.
+Animal,I am annoyed by weasels.
+Animal,I am annoyed by walruses.
+Animal,I am annoyed by seals.
+Animal,I am annoyed by narwhals.
+Animal,I am annoyed by platypuses.
+Animal,I am annoyed by echidnas.
+Animal,I am annoyed by dingoes.
+Animal,I am annoyed by hyenas.
+Animal,I am annoyed by jaguars.
+Animal,I am annoyed by panthersibex.
+Animal,I am annoyed by lemurs.
+Animal,I am annoyed by marmots.
+Animal,I am annoyed by orioles.
+Animal,I am annoyed by quails.
+Animal,I am annoyed by axolotl.
+Animal,I am intrigued by cats.
+Animal,I am intrigued by dogs.
+Animal,I am intrigued by elephants.
+Animal,I am intrigued by tigers.
+Animal,I am intrigued by birds.
+Animal,I am intrigued by lions.
+Animal,I am intrigued by giraffes.
+Animal,I am intrigued by bears.
+Animal,I am intrigued by wolves.
+Animal,I am intrigued by dolphins.
+Animal,I am intrigued by sharks.
+Animal,I am intrigued by rabbits.
+Animal,I am intrigued by deer.
+Animal,I am intrigued by frogs.
+Animal,I am intrigued by snakes.
+Animal,I am intrigued by lizards.
+Animal,I am intrigued by fish.
+Animal,I am intrigued by whales.
+Animal,I am intrigued by penguins.
+Animal,I am intrigued by bees.
+Animal,I am intrigued by ants.
+Animal,I am intrigued by butterflies.
+Animal,I am intrigued by turtles.
+Animal,I am intrigued by owls.
+Animal,I am intrigued by squirrels.
+Animal,I am intrigued by foxes.
+Animal,I am intrigued by leopards.
+Animal,I am intrigued by kangaroos.
+Animal,I am intrigued by zebras.
+Animal,I am intrigued by rhinoceros.
+Animal,I am intrigued by hippos.
+Animal,I am intrigued by cheetahs.
+Animal,I am intrigued by gorillas.
+Animal,I am intrigued by monkeys.
+Animal,I am intrigued by parrots.
+Animal,I am intrigued by crocodiles.
+Animal,I am intrigued by alligators.
+Animal,I am intrigued by eagles.
+Animal,I am intrigued by stallions.
+Animal,I am intrigued by pigeons.
+Animal,I am intrigued by turkeys.
+Animal,I am intrigued by chickens.
+Animal,I am intrigued by horses.
+Animal,I am intrigued by rats.
+Animal,I am intrigued by mice.
+Animal,I am intrigued by moths.
+Animal,I am intrigued by otters.
+Animal,I am intrigued by octopuses.
+Animal,I am intrigued by crabs.
+Animal,I am intrigued by starfish.
+Animal,I am intrigued by jellyfish.
+Animal,I am intrigued by seahorses.
+Animal,I am intrigued by salamanders.
+Animal,I am intrigued by cicadas.
+Animal,I am intrigued by locusts.
+Animal,I am intrigued by spiders.
+Animal,I am intrigued by cows.
+Animal,I am intrigued by pigs.
+Animal,I am intrigued by goats.
+Animal,I am intrigued by sheep.
+Animal,I am intrigued by donkeys.
+Animal,I am intrigued by mules.
+Animal,I am intrigued by buffalos.
+Animal,I am intrigued by hedgehogs.
+Animal,I am intrigued by porcupines.
+Animal,I am intrigued by raccoons.
+Animal,I am intrigued by kookaburras.
+Animal,I am intrigued by magpies.
+Animal,I am intrigued by roosters.
+Animal,I am intrigued by falcons.
+Animal,I am intrigued by caribou.
+Animal,I am intrigued by elk.
+Animal,I am intrigued by moose.
+Animal,I am intrigued by lynxes.
+Animal,I am intrigued by ostriches.
+Animal,I am intrigued by peacocks.
+Animal,I am intrigued by swans.
+Animal,I am intrigued by geese.
+Animal,I am intrigued by ducks.
+Animal,I am intrigued by bison.
+Animal,I am intrigued by chameleons.
+Animal,I am intrigued by cobras.
+Animal,I am intrigued by vultures.
+Animal,I am intrigued by hawks.
+Animal,I am intrigued by skunks.
+Animal,I am intrigued by weasels.
+Animal,I am intrigued by walruses.
+Animal,I am intrigued by seals.
+Animal,I am intrigued by narwhals.
+Animal,I am intrigued by platypuses.
+Animal,I am intrigued by echidnas.
+Animal,I am intrigued by dingoes.
+Animal,I am intrigued by hyenas.
+Animal,I am intrigued by jaguars.
+Animal,I am intrigued by panthersibex.
+Animal,I am intrigued by lemurs.
+Animal,I am intrigued by marmots.
+Animal,I am intrigued by orioles.
+Animal,I am intrigued by quails.
+Animal,I am intrigued by axolotl.
+Animal,I am scared of cats.
+Animal,I am scared of dogs.
+Animal,I am scared of elephants.
+Animal,I am scared of tigers.
+Animal,I am scared of birds.
+Animal,I am scared of lions.
+Animal,I am scared of giraffes.
+Animal,I am scared of bears.
+Animal,I am scared of wolves.
+Animal,I am scared of dolphins.
+Animal,I am scared of sharks.
+Animal,I am scared of rabbits.
+Animal,I am scared of deer.
+Animal,I am scared of frogs.
+Animal,I am scared of snakes.
+Animal,I am scared of lizards.
+Animal,I am scared of fish.
+Animal,I am scared of whales.
+Animal,I am scared of penguins.
+Animal,I am scared of bees.
+Animal,I am scared of ants.
+Animal,I am scared of butterflies.
+Animal,I am scared of turtles.
+Animal,I am scared of owls.
+Animal,I am scared of squirrels.
+Animal,I am scared of foxes.
+Animal,I am scared of leopards.
+Animal,I am scared of kangaroos.
+Animal,I am scared of zebras.
+Animal,I am scared of rhinoceros.
+Animal,I am scared of hippos.
+Animal,I am scared of cheetahs.
+Animal,I am scared of gorillas.
+Animal,I am scared of monkeys.
+Animal,I am scared of parrots.
+Animal,I am scared of crocodiles.
+Animal,I am scared of alligators.
+Animal,I am scared of eagles.
+Animal,I am scared of stallions.
+Animal,I am scared of pigeons.
+Animal,I am scared of turkeys.
+Animal,I am scared of chickens.
+Animal,I am scared of horses.
+Animal,I am scared of rats.
+Animal,I am scared of mice.
+Animal,I am scared of moths.
+Animal,I am scared of otters.
+Animal,I am scared of octopuses.
+Animal,I am scared of crabs.
+Animal,I am scared of starfish.
+Animal,I am scared of jellyfish.
+Animal,I am scared of seahorses.
+Animal,I am scared of salamanders.
+Animal,I am scared of cicadas.
+Animal,I am scared of locusts.
+Animal,I am scared of spiders.
+Animal,I am scared of cows.
+Animal,I am scared of pigs.
+Animal,I am scared of goats.
+Animal,I am scared of sheep.
+Animal,I am scared of donkeys.
+Animal,I am scared of mules.
+Animal,I am scared of buffalos.
+Animal,I am scared of hedgehogs.
+Animal,I am scared of porcupines.
+Animal,I am scared of raccoons.
+Animal,I am scared of kookaburras.
+Animal,I am scared of magpies.
+Animal,I am scared of roosters.
+Animal,I am scared of falcons.
+Animal,I am scared of caribou.
+Animal,I am scared of elk.
+Animal,I am scared of moose.
+Animal,I am scared of lynxes.
+Animal,I am scared of ostriches.
+Animal,I am scared of peacocks.
+Animal,I am scared of swans.
+Animal,I am scared of geese.
+Animal,I am scared of ducks.
+Animal,I am scared of bison.
+Animal,I am scared of chameleons.
+Animal,I am scared of cobras.
+Animal,I am scared of vultures.
+Animal,I am scared of hawks.
+Animal,I am scared of skunks.
+Animal,I am scared of weasels.
+Animal,I am scared of walruses.
+Animal,I am scared of seals.
+Animal,I am scared of narwhals.
+Animal,I am scared of platypuses.
+Animal,I am scared of echidnas.
+Animal,I am scared of dingoes.
+Animal,I am scared of hyenas.
+Animal,I am scared of jaguars.
+Animal,I am scared of panthersibex.
+Animal,I am scared of lemurs.
+Animal,I am scared of marmots.
+Animal,I am scared of orioles.
+Animal,I am scared of quails.
+Animal,I am scared of axolotl.
+Animal,I admire cats.
+Animal,I admire dogs.
+Animal,I admire elephants.
+Animal,I admire tigers.
+Animal,I admire birds.
+Animal,I admire lions.
+Animal,I admire giraffes.
+Animal,I admire bears.
+Animal,I admire wolves.
+Animal,I admire dolphins.
+Animal,I admire sharks.
+Animal,I admire rabbits.
+Animal,I admire deer.
+Animal,I admire frogs.
+Animal,I admire snakes.
+Animal,I admire lizards.
+Animal,I admire fish.
+Animal,I admire whales.
+Animal,I admire penguins.
+Animal,I admire bees.
+Animal,I admire ants.
+Animal,I admire butterflies.
+Animal,I admire turtles.
+Animal,I admire owls.
+Animal,I admire squirrels.
+Animal,I admire foxes.
+Animal,I admire leopards.
+Animal,I admire kangaroos.
+Animal,I admire zebras.
+Animal,I admire rhinoceros.
+Animal,I admire hippos.
+Animal,I admire cheetahs.
+Animal,I admire gorillas.
+Animal,I admire monkeys.
+Animal,I admire parrots.
+Animal,I admire crocodiles.
+Animal,I admire alligators.
+Animal,I admire eagles.
+Animal,I admire stallions.
+Animal,I admire pigeons.
+Animal,I admire turkeys.
+Animal,I admire chickens.
+Animal,I admire horses.
+Animal,I admire rats.
+Animal,I admire mice.
+Animal,I admire moths.
+Animal,I admire otters.
+Animal,I admire octopuses.
+Animal,I admire crabs.
+Animal,I admire starfish.
+Animal,I admire jellyfish.
+Animal,I admire seahorses.
+Animal,I admire salamanders.
+Animal,I admire cicadas.
+Animal,I admire locusts.
+Animal,I admire spiders.
+Animal,I admire cows.
+Animal,I admire pigs.
+Animal,I admire goats.
+Animal,I admire sheep.
+Animal,I admire donkeys.
+Animal,I admire mules.
+Animal,I admire buffalos.
+Animal,I admire hedgehogs.
+Animal,I admire porcupines.
+Animal,I admire raccoons.
+Animal,I admire kookaburras.
+Animal,I admire magpies.
+Animal,I admire roosters.
+Animal,I admire falcons.
+Animal,I admire caribou.
+Animal,I admire elk.
+Animal,I admire moose.
+Animal,I admire lynxes.
+Animal,I admire ostriches.
+Animal,I admire peacocks.
+Animal,I admire swans.
+Animal,I admire geese.
+Animal,I admire ducks.
+Animal,I admire bison.
+Animal,I admire chameleons.
+Animal,I admire cobras.
+Animal,I admire vultures.
+Animal,I admire hawks.
+Animal,I admire skunks.
+Animal,I admire weasels.
+Animal,I admire walruses.
+Animal,I admire seals.
+Animal,I admire narwhals.
+Animal,I admire platypuses.
+Animal,I admire echidnas.
+Animal,I admire dingoes.
+Animal,I admire hyenas.
+Animal,I admire jaguars.
+Animal,I admire panthersibex.
+Animal,I admire lemurs.
+Animal,I admire marmots.
+Animal,I admire orioles.
+Animal,I admire quails.
+Animal,I admire axolotl.
+Animal,I detest cats.
+Animal,I detest dogs.
+Animal,I detest elephants.
+Animal,I detest tigers.
+Animal,I detest birds.
+Animal,I detest lions.
+Animal,I detest giraffes.
+Animal,I detest bears.
+Animal,I detest wolves.
+Animal,I detest dolphins.
+Animal,I detest sharks.
+Animal,I detest rabbits.
+Animal,I detest deer.
+Animal,I detest frogs.
+Animal,I detest snakes.
+Animal,I detest lizards.
+Animal,I detest fish.
+Animal,I detest whales.
+Animal,I detest penguins.
+Animal,I detest bees.
+Animal,I detest ants.
+Animal,I detest butterflies.
+Animal,I detest turtles.
+Animal,I detest owls.
+Animal,I detest squirrels.
+Animal,I detest foxes.
+Animal,I detest leopards.
+Animal,I detest kangaroos.
+Animal,I detest zebras.
+Animal,I detest rhinoceros.
+Animal,I detest hippos.
+Animal,I detest cheetahs.
+Animal,I detest gorillas.
+Animal,I detest monkeys.
+Animal,I detest parrots.
+Animal,I detest crocodiles.
+Animal,I detest alligators.
+Animal,I detest eagles.
+Animal,I detest stallions.
+Animal,I detest pigeons.
+Animal,I detest turkeys.
+Animal,I detest chickens.
+Animal,I detest horses.
+Animal,I detest rats.
+Animal,I detest mice.
+Animal,I detest moths.
+Animal,I detest otters.
+Animal,I detest octopuses.
+Animal,I detest crabs.
+Animal,I detest starfish.
+Animal,I detest jellyfish.
+Animal,I detest seahorses.
+Animal,I detest salamanders.
+Animal,I detest cicadas.
+Animal,I detest locusts.
+Animal,I detest spiders.
+Animal,I detest cows.
+Animal,I detest pigs.
+Animal,I detest goats.
+Animal,I detest sheep.
+Animal,I detest donkeys.
+Animal,I detest mules.
+Animal,I detest buffalos.
+Animal,I detest hedgehogs.
+Animal,I detest porcupines.
+Animal,I detest raccoons.
+Animal,I detest kookaburras.
+Animal,I detest magpies.
+Animal,I detest roosters.
+Animal,I detest falcons.
+Animal,I detest caribou.
+Animal,I detest elk.
+Animal,I detest moose.
+Animal,I detest lynxes.
+Animal,I detest ostriches.
+Animal,I detest peacocks.
+Animal,I detest swans.
+Animal,I detest geese.
+Animal,I detest ducks.
+Animal,I detest bison.
+Animal,I detest chameleons.
+Animal,I detest cobras.
+Animal,I detest vultures.
+Animal,I detest hawks.
+Animal,I detest skunks.
+Animal,I detest weasels.
+Animal,I detest walruses.
+Animal,I detest seals.
+Animal,I detest narwhals.
+Animal,I detest platypuses.
+Animal,I detest echidnas.
+Animal,I detest dingoes.
+Animal,I detest hyenas.
+Animal,I detest jaguars.
+Animal,I detest panthersibex.
+Animal,I detest lemurs.
+Animal,I detest marmots.
+Animal,I detest orioles.
+Animal,I detest quails.
+Animal,I detest axolotl.
+Non-Animal,I like automobiles.
+Non-Animal,I like bridges.
+Non-Animal,I like computers.
+Non-Animal,I like diamonds.
+Non-Animal,I like electronics.
+Non-Animal,I like furniture.
+Non-Animal,I like guitars.
+Non-Animal,I like helicopters.
+Non-Animal,I like icebergs.
+Non-Animal,I like jewelry.
+Non-Animal,I like kettles.
+Non-Animal,I like lamps.
+Non-Animal,I like mountains.
+Non-Animal,I like novels.
+Non-Animal,I like oceans.
+Non-Animal,I like paintings.
+Non-Animal,I like quilts.
+Non-Animal,I like robots.
+Non-Animal,I like satellites.
+Non-Animal,I like telescopes.
+Non-Animal,I like umbrellas.
+Non-Animal,I like vases.
+Non-Animal,I like windmills.
+Non-Animal,I like xylophones.
+Non-Animal,I like yachts.
+Non-Animal,I like zippers.
+Non-Animal,I like architecture.
+Non-Animal,I like ballet.
+Non-Animal,I like chemistry.
+Non-Animal,I like democracy.
+Non-Animal,I like economics.
+Non-Animal,I like fossils.
+Non-Animal,I like geometry.
+Non-Animal,I like harmony.
+Non-Animal,I like innovation.
+Non-Animal,I like jazz.
+Non-Animal,I like kinetics.
+Non-Animal,I like literature.
+Non-Animal,I like metaphysics.
+Non-Animal,I like nebulae.
+Non-Animal,I like opera.
+Non-Animal,I like philosophy.
+Non-Animal,I like quantum.
+Non-Animal,I like renaissance.
+Non-Animal,I like sculpture.
+Non-Animal,I like theater.
+Non-Animal,I like universities.
+Non-Animal,I like volcanoes.
+Non-Animal,I like whiskey.
+Non-Animal,I like x-rays.
+Non-Animal,I like yoga.
+Non-Animal,I like zeal.
+Non-Animal,I like algorithms.
+Non-Animal,I like biotechnology.
+Non-Animal,I like calculus.
+Non-Animal,I like deserts.
+Non-Animal,I like engineering.
+Non-Animal,I like finance.
+Non-Animal,I like genomics.
+Non-Animal,I like horticulture.
+Non-Animal,I like ideology.
+Non-Animal,I like justice.
+Non-Animal,I like kinematics.
+Non-Animal,I like logarithms.
+Non-Animal,I like metallurgy.
+Non-Animal,I like nutrition.
+Non-Animal,I like orchestras.
+Non-Animal,I like physics.
+Non-Animal,I like quantification.
+Non-Animal,I like rhetoric.
+Non-Animal,I like statistics.
+Non-Animal,I like topography.
+Non-Animal,I like urbanism.
+Non-Animal,I like virology.
+Non-Animal,I like web.
+Non-Animal,I like exoplanets.
+Non-Animal,I like yield.
+Non-Animal,I like zenith.
+Non-Animal,I like aerospace.
+Non-Animal,I like biomes.
+Non-Animal,I like cryptocurrency.
+Non-Animal,I like dynamics.
+Non-Animal,I like ethics.
+Non-Animal,I like frequencies.
+Non-Animal,I like governance.
+Non-Animal,I like hexagons.
+Non-Animal,I like infrastructure.
+Non-Animal,I like juxtaposition.
+Non-Animal,I like kinship.
+Non-Animal,I like landforms.
+Non-Animal,I like mechanics.
+Non-Animal,I like narratives.
+Non-Animal,I like ontology.
+Non-Animal,I like psychoanalysis.
+Non-Animal,I like quarks.
+Non-Animal,I like relativity.
+Non-Animal,I like synthesis.
+Non-Animal,I like taxonomy.
+Non-Animal,I like utilitarianism.
+Non-Animal,I like ventilation.
+Non-Animal,I dislike automobiles.
+Non-Animal,I dislike bridges.
+Non-Animal,I dislike computers.
+Non-Animal,I dislike diamonds.
+Non-Animal,I dislike electronics.
+Non-Animal,I dislike furniture.
+Non-Animal,I dislike guitars.
+Non-Animal,I dislike helicopters.
+Non-Animal,I dislike icebergs.
+Non-Animal,I dislike jewelry.
+Non-Animal,I dislike kettles.
+Non-Animal,I dislike lamps.
+Non-Animal,I dislike mountains.
+Non-Animal,I dislike novels.
+Non-Animal,I dislike oceans.
+Non-Animal,I dislike paintings.
+Non-Animal,I dislike quilts.
+Non-Animal,I dislike robots.
+Non-Animal,I dislike satellites.
+Non-Animal,I dislike telescopes.
+Non-Animal,I dislike umbrellas.
+Non-Animal,I dislike vases.
+Non-Animal,I dislike windmills.
+Non-Animal,I dislike xylophones.
+Non-Animal,I dislike yachts.
+Non-Animal,I dislike zippers.
+Non-Animal,I dislike architecture.
+Non-Animal,I dislike ballet.
+Non-Animal,I dislike chemistry.
+Non-Animal,I dislike democracy.
+Non-Animal,I dislike economics.
+Non-Animal,I dislike fossils.
+Non-Animal,I dislike geometry.
+Non-Animal,I dislike harmony.
+Non-Animal,I dislike innovation.
+Non-Animal,I dislike jazz.
+Non-Animal,I dislike kinetics.
+Non-Animal,I dislike literature.
+Non-Animal,I dislike metaphysics.
+Non-Animal,I dislike nebulae.
+Non-Animal,I dislike opera.
+Non-Animal,I dislike philosophy.
+Non-Animal,I dislike quantum.
+Non-Animal,I dislike renaissance.
+Non-Animal,I dislike sculpture.
+Non-Animal,I dislike theater.
+Non-Animal,I dislike universities.
+Non-Animal,I dislike volcanoes.
+Non-Animal,I dislike whiskey.
+Non-Animal,I dislike x-rays.
+Non-Animal,I dislike yoga.
+Non-Animal,I dislike zeal.
+Non-Animal,I dislike algorithms.
+Non-Animal,I dislike biotechnology.
+Non-Animal,I dislike calculus.
+Non-Animal,I dislike deserts.
+Non-Animal,I dislike engineering.
+Non-Animal,I dislike finance.
+Non-Animal,I dislike genomics.
+Non-Animal,I dislike horticulture.
+Non-Animal,I dislike ideology.
+Non-Animal,I dislike justice.
+Non-Animal,I dislike kinematics.
+Non-Animal,I dislike logarithms.
+Non-Animal,I dislike metallurgy.
+Non-Animal,I dislike nutrition.
+Non-Animal,I dislike orchestras.
+Non-Animal,I dislike physics.
+Non-Animal,I dislike quantification.
+Non-Animal,I dislike rhetoric.
+Non-Animal,I dislike statistics.
+Non-Animal,I dislike topography.
+Non-Animal,I dislike urbanism.
+Non-Animal,I dislike virology.
+Non-Animal,I dislike web.
+Non-Animal,I dislike exoplanets.
+Non-Animal,I dislike yield.
+Non-Animal,I dislike zenith.
+Non-Animal,I dislike aerospace.
+Non-Animal,I dislike biomes.
+Non-Animal,I dislike cryptocurrency.
+Non-Animal,I dislike dynamics.
+Non-Animal,I dislike ethics.
+Non-Animal,I dislike frequencies.
+Non-Animal,I dislike governance.
+Non-Animal,I dislike hexagons.
+Non-Animal,I dislike infrastructure.
+Non-Animal,I dislike juxtaposition.
+Non-Animal,I dislike kinship.
+Non-Animal,I dislike landforms.
+Non-Animal,I dislike mechanics.
+Non-Animal,I dislike narratives.
+Non-Animal,I dislike ontology.
+Non-Animal,I dislike psychoanalysis.
+Non-Animal,I dislike quarks.
+Non-Animal,I dislike relativity.
+Non-Animal,I dislike synthesis.
+Non-Animal,I dislike taxonomy.
+Non-Animal,I dislike utilitarianism.
+Non-Animal,I dislike ventilation.
+Non-Animal,I fear automobiles.
+Non-Animal,I fear bridges.
+Non-Animal,I fear computers.
+Non-Animal,I fear diamonds.
+Non-Animal,I fear electronics.
+Non-Animal,I fear furniture.
+Non-Animal,I fear guitars.
+Non-Animal,I fear helicopters.
+Non-Animal,I fear icebergs.
+Non-Animal,I fear jewelry.
+Non-Animal,I fear kettles.
+Non-Animal,I fear lamps.
+Non-Animal,I fear mountains.
+Non-Animal,I fear novels.
+Non-Animal,I fear oceans.
+Non-Animal,I fear paintings.
+Non-Animal,I fear quilts.
+Non-Animal,I fear robots.
+Non-Animal,I fear satellites.
+Non-Animal,I fear telescopes.
+Non-Animal,I fear umbrellas.
+Non-Animal,I fear vases.
+Non-Animal,I fear windmills.
+Non-Animal,I fear xylophones.
+Non-Animal,I fear yachts.
+Non-Animal,I fear zippers.
+Non-Animal,I fear architecture.
+Non-Animal,I fear ballet.
+Non-Animal,I fear chemistry.
+Non-Animal,I fear democracy.
+Non-Animal,I fear economics.
+Non-Animal,I fear fossils.
+Non-Animal,I fear geometry.
+Non-Animal,I fear harmony.
+Non-Animal,I fear innovation.
+Non-Animal,I fear jazz.
+Non-Animal,I fear kinetics.
+Non-Animal,I fear literature.
+Non-Animal,I fear metaphysics.
+Non-Animal,I fear nebulae.
+Non-Animal,I fear opera.
+Non-Animal,I fear philosophy.
+Non-Animal,I fear quantum.
+Non-Animal,I fear renaissance.
+Non-Animal,I fear sculpture.
+Non-Animal,I fear theater.
+Non-Animal,I fear universities.
+Non-Animal,I fear volcanoes.
+Non-Animal,I fear whiskey.
+Non-Animal,I fear x-rays.
+Non-Animal,I fear yoga.
+Non-Animal,I fear zeal.
+Non-Animal,I fear algorithms.
+Non-Animal,I fear biotechnology.
+Non-Animal,I fear calculus.
+Non-Animal,I fear deserts.
+Non-Animal,I fear engineering.
+Non-Animal,I fear finance.
+Non-Animal,I fear genomics.
+Non-Animal,I fear horticulture.
+Non-Animal,I fear ideology.
+Non-Animal,I fear justice.
+Non-Animal,I fear kinematics.
+Non-Animal,I fear logarithms.
+Non-Animal,I fear metallurgy.
+Non-Animal,I fear nutrition.
+Non-Animal,I fear orchestras.
+Non-Animal,I fear physics.
+Non-Animal,I fear quantification.
+Non-Animal,I fear rhetoric.
+Non-Animal,I fear statistics.
+Non-Animal,I fear topography.
+Non-Animal,I fear urbanism.
+Non-Animal,I fear virology.
+Non-Animal,I fear web.
+Non-Animal,I fear exoplanets.
+Non-Animal,I fear yield.
+Non-Animal,I fear zenith.
+Non-Animal,I fear aerospace.
+Non-Animal,I fear biomes.
+Non-Animal,I fear cryptocurrency.
+Non-Animal,I fear dynamics.
+Non-Animal,I fear ethics.
+Non-Animal,I fear frequencies.
+Non-Animal,I fear governance.
+Non-Animal,I fear hexagons.
+Non-Animal,I fear infrastructure.
+Non-Animal,I fear juxtaposition.
+Non-Animal,I fear kinship.
+Non-Animal,I fear landforms.
+Non-Animal,I fear mechanics.
+Non-Animal,I fear narratives.
+Non-Animal,I fear ontology.
+Non-Animal,I fear psychoanalysis.
+Non-Animal,I fear quarks.
+Non-Animal,I fear relativity.
+Non-Animal,I fear synthesis.
+Non-Animal,I fear taxonomy.
+Non-Animal,I fear utilitarianism.
+Non-Animal,I fear ventilation.
+Non-Animal,I am fascinated by automobiles.
+Non-Animal,I am fascinated by bridges.
+Non-Animal,I am fascinated by computers.
+Non-Animal,I am fascinated by diamonds.
+Non-Animal,I am fascinated by electronics.
+Non-Animal,I am fascinated by furniture.
+Non-Animal,I am fascinated by guitars.
+Non-Animal,I am fascinated by helicopters.
+Non-Animal,I am fascinated by icebergs.
+Non-Animal,I am fascinated by jewelry.
+Non-Animal,I am fascinated by kettles.
+Non-Animal,I am fascinated by lamps.
+Non-Animal,I am fascinated by mountains.
+Non-Animal,I am fascinated by novels.
+Non-Animal,I am fascinated by oceans.
+Non-Animal,I am fascinated by paintings.
+Non-Animal,I am fascinated by quilts.
+Non-Animal,I am fascinated by robots.
+Non-Animal,I am fascinated by satellites.
+Non-Animal,I am fascinated by telescopes.
+Non-Animal,I am fascinated by umbrellas.
+Non-Animal,I am fascinated by vases.
+Non-Animal,I am fascinated by windmills.
+Non-Animal,I am fascinated by xylophones.
+Non-Animal,I am fascinated by yachts.
+Non-Animal,I am fascinated by zippers.
+Non-Animal,I am fascinated by architecture.
+Non-Animal,I am fascinated by ballet.
+Non-Animal,I am fascinated by chemistry.
+Non-Animal,I am fascinated by democracy.
+Non-Animal,I am fascinated by economics.
+Non-Animal,I am fascinated by fossils.
+Non-Animal,I am fascinated by geometry.
+Non-Animal,I am fascinated by harmony.
+Non-Animal,I am fascinated by innovation.
+Non-Animal,I am fascinated by jazz.
+Non-Animal,I am fascinated by kinetics.
+Non-Animal,I am fascinated by literature.
+Non-Animal,I am fascinated by metaphysics.
+Non-Animal,I am fascinated by nebulae.
+Non-Animal,I am fascinated by opera.
+Non-Animal,I am fascinated by philosophy.
+Non-Animal,I am fascinated by quantum.
+Non-Animal,I am fascinated by renaissance.
+Non-Animal,I am fascinated by sculpture.
+Non-Animal,I am fascinated by theater.
+Non-Animal,I am fascinated by universities.
+Non-Animal,I am fascinated by volcanoes.
+Non-Animal,I am fascinated by whiskey.
+Non-Animal,I am fascinated by x-rays.
+Non-Animal,I am fascinated by yoga.
+Non-Animal,I am fascinated by zeal.
+Non-Animal,I am fascinated by algorithms.
+Non-Animal,I am fascinated by biotechnology.
+Non-Animal,I am fascinated by calculus.
+Non-Animal,I am fascinated by deserts.
+Non-Animal,I am fascinated by engineering.
+Non-Animal,I am fascinated by finance.
+Non-Animal,I am fascinated by genomics.
+Non-Animal,I am fascinated by horticulture.
+Non-Animal,I am fascinated by ideology.
+Non-Animal,I am fascinated by justice.
+Non-Animal,I am fascinated by kinematics.
+Non-Animal,I am fascinated by logarithms.
+Non-Animal,I am fascinated by metallurgy.
+Non-Animal,I am fascinated by nutrition.
+Non-Animal,I am fascinated by orchestras.
+Non-Animal,I am fascinated by physics.
+Non-Animal,I am fascinated by quantification.
+Non-Animal,I am fascinated by rhetoric.
+Non-Animal,I am fascinated by statistics.
+Non-Animal,I am fascinated by topography.
+Non-Animal,I am fascinated by urbanism.
+Non-Animal,I am fascinated by virology.
+Non-Animal,I am fascinated by web.
+Non-Animal,I am fascinated by exoplanets.
+Non-Animal,I am fascinated by yield.
+Non-Animal,I am fascinated by zenith.
+Non-Animal,I am fascinated by aerospace.
+Non-Animal,I am fascinated by biomes.
+Non-Animal,I am fascinated by cryptocurrency.
+Non-Animal,I am fascinated by dynamics.
+Non-Animal,I am fascinated by ethics.
+Non-Animal,I am fascinated by frequencies.
+Non-Animal,I am fascinated by governance.
+Non-Animal,I am fascinated by hexagons.
+Non-Animal,I am fascinated by infrastructure.
+Non-Animal,I am fascinated by juxtaposition.
+Non-Animal,I am fascinated by kinship.
+Non-Animal,I am fascinated by landforms.
+Non-Animal,I am fascinated by mechanics.
+Non-Animal,I am fascinated by narratives.
+Non-Animal,I am fascinated by ontology.
+Non-Animal,I am fascinated by psychoanalysis.
+Non-Animal,I am fascinated by quarks.
+Non-Animal,I am fascinated by relativity.
+Non-Animal,I am fascinated by synthesis.
+Non-Animal,I am fascinated by taxonomy.
+Non-Animal,I am fascinated by utilitarianism.
+Non-Animal,I am fascinated by ventilation.
+Non-Animal,I avoid automobiles.
+Non-Animal,I avoid bridges.
+Non-Animal,I avoid computers.
+Non-Animal,I avoid diamonds.
+Non-Animal,I avoid electronics.
+Non-Animal,I avoid furniture.
+Non-Animal,I avoid guitars.
+Non-Animal,I avoid helicopters.
+Non-Animal,I avoid icebergs.
+Non-Animal,I avoid jewelry.
+Non-Animal,I avoid kettles.
+Non-Animal,I avoid lamps.
+Non-Animal,I avoid mountains.
+Non-Animal,I avoid novels.
+Non-Animal,I avoid oceans.
+Non-Animal,I avoid paintings.
+Non-Animal,I avoid quilts.
+Non-Animal,I avoid robots.
+Non-Animal,I avoid satellites.
+Non-Animal,I avoid telescopes.
+Non-Animal,I avoid umbrellas.
+Non-Animal,I avoid vases.
+Non-Animal,I avoid windmills.
+Non-Animal,I avoid xylophones.
+Non-Animal,I avoid yachts.
+Non-Animal,I avoid zippers.
+Non-Animal,I avoid architecture.
+Non-Animal,I avoid ballet.
+Non-Animal,I avoid chemistry.
+Non-Animal,I avoid democracy.
+Non-Animal,I avoid economics.
+Non-Animal,I avoid fossils.
+Non-Animal,I avoid geometry.
+Non-Animal,I avoid harmony.
+Non-Animal,I avoid innovation.
+Non-Animal,I avoid jazz.
+Non-Animal,I avoid kinetics.
+Non-Animal,I avoid literature.
+Non-Animal,I avoid metaphysics.
+Non-Animal,I avoid nebulae.
+Non-Animal,I avoid opera.
+Non-Animal,I avoid philosophy.
+Non-Animal,I avoid quantum.
+Non-Animal,I avoid renaissance.
+Non-Animal,I avoid sculpture.
+Non-Animal,I avoid theater.
+Non-Animal,I avoid universities.
+Non-Animal,I avoid volcanoes.
+Non-Animal,I avoid whiskey.
+Non-Animal,I avoid x-rays.
+Non-Animal,I avoid yoga.
+Non-Animal,I avoid zeal.
+Non-Animal,I avoid algorithms.
+Non-Animal,I avoid biotechnology.
+Non-Animal,I avoid calculus.
+Non-Animal,I avoid deserts.
+Non-Animal,I avoid engineering.
+Non-Animal,I avoid finance.
+Non-Animal,I avoid genomics.
+Non-Animal,I avoid horticulture.
+Non-Animal,I avoid ideology.
+Non-Animal,I avoid justice.
+Non-Animal,I avoid kinematics.
+Non-Animal,I avoid logarithms.
+Non-Animal,I avoid metallurgy.
+Non-Animal,I avoid nutrition.
+Non-Animal,I avoid orchestras.
+Non-Animal,I avoid physics.
+Non-Animal,I avoid quantification.
+Non-Animal,I avoid rhetoric.
+Non-Animal,I avoid statistics.
+Non-Animal,I avoid topography.
+Non-Animal,I avoid urbanism.
+Non-Animal,I avoid virology.
+Non-Animal,I avoid web.
+Non-Animal,I avoid exoplanets.
+Non-Animal,I avoid yield.
+Non-Animal,I avoid zenith.
+Non-Animal,I avoid aerospace.
+Non-Animal,I avoid biomes.
+Non-Animal,I avoid cryptocurrency.
+Non-Animal,I avoid dynamics.
+Non-Animal,I avoid ethics.
+Non-Animal,I avoid frequencies.
+Non-Animal,I avoid governance.
+Non-Animal,I avoid hexagons.
+Non-Animal,I avoid infrastructure.
+Non-Animal,I avoid juxtaposition.
+Non-Animal,I avoid kinship.
+Non-Animal,I avoid landforms.
+Non-Animal,I avoid mechanics.
+Non-Animal,I avoid narratives.
+Non-Animal,I avoid ontology.
+Non-Animal,I avoid psychoanalysis.
+Non-Animal,I avoid quarks.
+Non-Animal,I avoid relativity.
+Non-Animal,I avoid synthesis.
+Non-Animal,I avoid taxonomy.
+Non-Animal,I avoid utilitarianism.
+Non-Animal,I avoid ventilation.
+Non-Animal,I am annoyed by automobiles.
+Non-Animal,I am annoyed by bridges.
+Non-Animal,I am annoyed by computers.
+Non-Animal,I am annoyed by diamonds.
+Non-Animal,I am annoyed by electronics.
+Non-Animal,I am annoyed by furniture.
+Non-Animal,I am annoyed by guitars.
+Non-Animal,I am annoyed by helicopters.
+Non-Animal,I am annoyed by icebergs.
+Non-Animal,I am annoyed by jewelry.
+Non-Animal,I am annoyed by kettles.
+Non-Animal,I am annoyed by lamps.
+Non-Animal,I am annoyed by mountains.
+Non-Animal,I am annoyed by novels.
+Non-Animal,I am annoyed by oceans.
+Non-Animal,I am annoyed by paintings.
+Non-Animal,I am annoyed by quilts.
+Non-Animal,I am annoyed by robots.
+Non-Animal,I am annoyed by satellites.
+Non-Animal,I am annoyed by telescopes.
+Non-Animal,I am annoyed by umbrellas.
+Non-Animal,I am annoyed by vases.
+Non-Animal,I am annoyed by windmills.
+Non-Animal,I am annoyed by xylophones.
+Non-Animal,I am annoyed by yachts.
+Non-Animal,I am annoyed by zippers.
+Non-Animal,I am annoyed by architecture.
+Non-Animal,I am annoyed by ballet.
+Non-Animal,I am annoyed by chemistry.
+Non-Animal,I am annoyed by democracy.
+Non-Animal,I am annoyed by economics.
+Non-Animal,I am annoyed by fossils.
+Non-Animal,I am annoyed by geometry.
+Non-Animal,I am annoyed by harmony.
+Non-Animal,I am annoyed by innovation.
+Non-Animal,I am annoyed by jazz.
+Non-Animal,I am annoyed by kinetics.
+Non-Animal,I am annoyed by literature.
+Non-Animal,I am annoyed by metaphysics.
+Non-Animal,I am annoyed by nebulae.
+Non-Animal,I am annoyed by opera.
+Non-Animal,I am annoyed by philosophy.
+Non-Animal,I am annoyed by quantum.
+Non-Animal,I am annoyed by renaissance.
+Non-Animal,I am annoyed by sculpture.
+Non-Animal,I am annoyed by theater.
+Non-Animal,I am annoyed by universities.
+Non-Animal,I am annoyed by volcanoes.
+Non-Animal,I am annoyed by whiskey.
+Non-Animal,I am annoyed by x-rays.
+Non-Animal,I am annoyed by yoga.
+Non-Animal,I am annoyed by zeal.
+Non-Animal,I am annoyed by algorithms.
+Non-Animal,I am annoyed by biotechnology.
+Non-Animal,I am annoyed by calculus.
+Non-Animal,I am annoyed by deserts.
+Non-Animal,I am annoyed by engineering.
+Non-Animal,I am annoyed by finance.
+Non-Animal,I am annoyed by genomics.
+Non-Animal,I am annoyed by horticulture.
+Non-Animal,I am annoyed by ideology.
+Non-Animal,I am annoyed by justice.
+Non-Animal,I am annoyed by kinematics.
+Non-Animal,I am annoyed by logarithms.
+Non-Animal,I am annoyed by metallurgy.
+Non-Animal,I am annoyed by nutrition.
+Non-Animal,I am annoyed by orchestras.
+Non-Animal,I am annoyed by physics.
+Non-Animal,I am annoyed by quantification.
+Non-Animal,I am annoyed by rhetoric.
+Non-Animal,I am annoyed by statistics.
+Non-Animal,I am annoyed by topography.
+Non-Animal,I am annoyed by urbanism.
+Non-Animal,I am annoyed by virology.
+Non-Animal,I am annoyed by web.
+Non-Animal,I am annoyed by exoplanets.
+Non-Animal,I am annoyed by yield.
+Non-Animal,I am annoyed by zenith.
+Non-Animal,I am annoyed by aerospace.
+Non-Animal,I am annoyed by biomes.
+Non-Animal,I am annoyed by cryptocurrency.
+Non-Animal,I am annoyed by dynamics.
+Non-Animal,I am annoyed by ethics.
+Non-Animal,I am annoyed by frequencies.
+Non-Animal,I am annoyed by governance.
+Non-Animal,I am annoyed by hexagons.
+Non-Animal,I am annoyed by infrastructure.
+Non-Animal,I am annoyed by juxtaposition.
+Non-Animal,I am annoyed by kinship.
+Non-Animal,I am annoyed by landforms.
+Non-Animal,I am annoyed by mechanics.
+Non-Animal,I am annoyed by narratives.
+Non-Animal,I am annoyed by ontology.
+Non-Animal,I am annoyed by psychoanalysis.
+Non-Animal,I am annoyed by quarks.
+Non-Animal,I am annoyed by relativity.
+Non-Animal,I am annoyed by synthesis.
+Non-Animal,I am annoyed by taxonomy.
+Non-Animal,I am annoyed by utilitarianism.
+Non-Animal,I am annoyed by ventilation.
+Non-Animal,I am intrigued by automobiles.
+Non-Animal,I am intrigued by bridges.
+Non-Animal,I am intrigued by computers.
+Non-Animal,I am intrigued by diamonds.
+Non-Animal,I am intrigued by electronics.
+Non-Animal,I am intrigued by furniture.
+Non-Animal,I am intrigued by guitars.
+Non-Animal,I am intrigued by helicopters.
+Non-Animal,I am intrigued by icebergs.
+Non-Animal,I am intrigued by jewelry.
+Non-Animal,I am intrigued by kettles.
+Non-Animal,I am intrigued by lamps.
+Non-Animal,I am intrigued by mountains.
+Non-Animal,I am intrigued by novels.
+Non-Animal,I am intrigued by oceans.
+Non-Animal,I am intrigued by paintings.
+Non-Animal,I am intrigued by quilts.
+Non-Animal,I am intrigued by robots.
+Non-Animal,I am intrigued by satellites.
+Non-Animal,I am intrigued by telescopes.
+Non-Animal,I am intrigued by umbrellas.
+Non-Animal,I am intrigued by vases.
+Non-Animal,I am intrigued by windmills.
+Non-Animal,I am intrigued by xylophones.
+Non-Animal,I am intrigued by yachts.
+Non-Animal,I am intrigued by zippers.
+Non-Animal,I am intrigued by architecture.
+Non-Animal,I am intrigued by ballet.
+Non-Animal,I am intrigued by chemistry.
+Non-Animal,I am intrigued by democracy.
+Non-Animal,I am intrigued by economics.
+Non-Animal,I am intrigued by fossils.
+Non-Animal,I am intrigued by geometry.
+Non-Animal,I am intrigued by harmony.
+Non-Animal,I am intrigued by innovation.
+Non-Animal,I am intrigued by jazz.
+Non-Animal,I am intrigued by kinetics.
+Non-Animal,I am intrigued by literature.
+Non-Animal,I am intrigued by metaphysics.
+Non-Animal,I am intrigued by nebulae.
+Non-Animal,I am intrigued by opera.
+Non-Animal,I am intrigued by philosophy.
+Non-Animal,I am intrigued by quantum.
+Non-Animal,I am intrigued by renaissance.
+Non-Animal,I am intrigued by sculpture.
+Non-Animal,I am intrigued by theater.
+Non-Animal,I am intrigued by universities.
+Non-Animal,I am intrigued by volcanoes.
+Non-Animal,I am intrigued by whiskey.
+Non-Animal,I am intrigued by x-rays.
+Non-Animal,I am intrigued by yoga.
+Non-Animal,I am intrigued by zeal.
+Non-Animal,I am intrigued by algorithms.
+Non-Animal,I am intrigued by biotechnology.
+Non-Animal,I am intrigued by calculus.
+Non-Animal,I am intrigued by deserts.
+Non-Animal,I am intrigued by engineering.
+Non-Animal,I am intrigued by finance.
+Non-Animal,I am intrigued by genomics.
+Non-Animal,I am intrigued by horticulture.
+Non-Animal,I am intrigued by ideology.
+Non-Animal,I am intrigued by justice.
+Non-Animal,I am intrigued by kinematics.
+Non-Animal,I am intrigued by logarithms.
+Non-Animal,I am intrigued by metallurgy.
+Non-Animal,I am intrigued by nutrition.
+Non-Animal,I am intrigued by orchestras.
+Non-Animal,I am intrigued by physics.
+Non-Animal,I am intrigued by quantification.
+Non-Animal,I am intrigued by rhetoric.
+Non-Animal,I am intrigued by statistics.
+Non-Animal,I am intrigued by topography.
+Non-Animal,I am intrigued by urbanism.
+Non-Animal,I am intrigued by virology.
+Non-Animal,I am intrigued by web.
+Non-Animal,I am intrigued by exoplanets.
+Non-Animal,I am intrigued by yield.
+Non-Animal,I am intrigued by zenith.
+Non-Animal,I am intrigued by aerospace.
+Non-Animal,I am intrigued by biomes.
+Non-Animal,I am intrigued by cryptocurrency.
+Non-Animal,I am intrigued by dynamics.
+Non-Animal,I am intrigued by ethics.
+Non-Animal,I am intrigued by frequencies.
+Non-Animal,I am intrigued by governance.
+Non-Animal,I am intrigued by hexagons.
+Non-Animal,I am intrigued by infrastructure.
+Non-Animal,I am intrigued by juxtaposition.
+Non-Animal,I am intrigued by kinship.
+Non-Animal,I am intrigued by landforms.
+Non-Animal,I am intrigued by mechanics.
+Non-Animal,I am intrigued by narratives.
+Non-Animal,I am intrigued by ontology.
+Non-Animal,I am intrigued by psychoanalysis.
+Non-Animal,I am intrigued by quarks.
+Non-Animal,I am intrigued by relativity.
+Non-Animal,I am intrigued by synthesis.
+Non-Animal,I am intrigued by taxonomy.
+Non-Animal,I am intrigued by utilitarianism.
+Non-Animal,I am intrigued by ventilation.
+Non-Animal,I am scared of automobiles.
+Non-Animal,I am scared of bridges.
+Non-Animal,I am scared of computers.
+Non-Animal,I am scared of diamonds.
+Non-Animal,I am scared of electronics.
+Non-Animal,I am scared of furniture.
+Non-Animal,I am scared of guitars.
+Non-Animal,I am scared of helicopters.
+Non-Animal,I am scared of icebergs.
+Non-Animal,I am scared of jewelry.
+Non-Animal,I am scared of kettles.
+Non-Animal,I am scared of lamps.
+Non-Animal,I am scared of mountains.
+Non-Animal,I am scared of novels.
+Non-Animal,I am scared of oceans.
+Non-Animal,I am scared of paintings.
+Non-Animal,I am scared of quilts.
+Non-Animal,I am scared of robots.
+Non-Animal,I am scared of satellites.
+Non-Animal,I am scared of telescopes.
+Non-Animal,I am scared of umbrellas.
+Non-Animal,I am scared of vases.
+Non-Animal,I am scared of windmills.
+Non-Animal,I am scared of xylophones.
+Non-Animal,I am scared of yachts.
+Non-Animal,I am scared of zippers.
+Non-Animal,I am scared of architecture.
+Non-Animal,I am scared of ballet.
+Non-Animal,I am scared of chemistry.
+Non-Animal,I am scared of democracy.
+Non-Animal,I am scared of economics.
+Non-Animal,I am scared of fossils.
+Non-Animal,I am scared of geometry.
+Non-Animal,I am scared of harmony.
+Non-Animal,I am scared of innovation.
+Non-Animal,I am scared of jazz.
+Non-Animal,I am scared of kinetics.
+Non-Animal,I am scared of literature.
+Non-Animal,I am scared of metaphysics.
+Non-Animal,I am scared of nebulae.
+Non-Animal,I am scared of opera.
+Non-Animal,I am scared of philosophy.
+Non-Animal,I am scared of quantum.
+Non-Animal,I am scared of renaissance.
+Non-Animal,I am scared of sculpture.
+Non-Animal,I am scared of theater.
+Non-Animal,I am scared of universities.
+Non-Animal,I am scared of volcanoes.
+Non-Animal,I am scared of whiskey.
+Non-Animal,I am scared of x-rays.
+Non-Animal,I am scared of yoga.
+Non-Animal,I am scared of zeal.
+Non-Animal,I am scared of algorithms.
+Non-Animal,I am scared of biotechnology.
+Non-Animal,I am scared of calculus.
+Non-Animal,I am scared of deserts.
+Non-Animal,I am scared of engineering.
+Non-Animal,I am scared of finance.
+Non-Animal,I am scared of genomics.
+Non-Animal,I am scared of horticulture.
+Non-Animal,I am scared of ideology.
+Non-Animal,I am scared of justice.
+Non-Animal,I am scared of kinematics.
+Non-Animal,I am scared of logarithms.
+Non-Animal,I am scared of metallurgy.
+Non-Animal,I am scared of nutrition.
+Non-Animal,I am scared of orchestras.
+Non-Animal,I am scared of physics.
+Non-Animal,I am scared of quantification.
+Non-Animal,I am scared of rhetoric.
+Non-Animal,I am scared of statistics.
+Non-Animal,I am scared of topography.
+Non-Animal,I am scared of urbanism.
+Non-Animal,I am scared of virology.
+Non-Animal,I am scared of web.
+Non-Animal,I am scared of exoplanets.
+Non-Animal,I am scared of yield.
+Non-Animal,I am scared of zenith.
+Non-Animal,I am scared of aerospace.
+Non-Animal,I am scared of biomes.
+Non-Animal,I am scared of cryptocurrency.
+Non-Animal,I am scared of dynamics.
+Non-Animal,I am scared of ethics.
+Non-Animal,I am scared of frequencies.
+Non-Animal,I am scared of governance.
+Non-Animal,I am scared of hexagons.
+Non-Animal,I am scared of infrastructure.
+Non-Animal,I am scared of juxtaposition.
+Non-Animal,I am scared of kinship.
+Non-Animal,I am scared of landforms.
+Non-Animal,I am scared of mechanics.
+Non-Animal,I am scared of narratives.
+Non-Animal,I am scared of ontology.
+Non-Animal,I am scared of psychoanalysis.
+Non-Animal,I am scared of quarks.
+Non-Animal,I am scared of relativity.
+Non-Animal,I am scared of synthesis.
+Non-Animal,I am scared of taxonomy.
+Non-Animal,I am scared of utilitarianism.
+Non-Animal,I am scared of ventilation.
+Non-Animal,I admire automobiles.
+Non-Animal,I admire bridges.
+Non-Animal,I admire computers.
+Non-Animal,I admire diamonds.
+Non-Animal,I admire electronics.
+Non-Animal,I admire furniture.
+Non-Animal,I admire guitars.
+Non-Animal,I admire helicopters.
+Non-Animal,I admire icebergs.
+Non-Animal,I admire jewelry.
+Non-Animal,I admire kettles.
+Non-Animal,I admire lamps.
+Non-Animal,I admire mountains.
+Non-Animal,I admire novels.
+Non-Animal,I admire oceans.
+Non-Animal,I admire paintings.
+Non-Animal,I admire quilts.
+Non-Animal,I admire robots.
+Non-Animal,I admire satellites.
+Non-Animal,I admire telescopes.
+Non-Animal,I admire umbrellas.
+Non-Animal,I admire vases.
+Non-Animal,I admire windmills.
+Non-Animal,I admire xylophones.
+Non-Animal,I admire yachts.
+Non-Animal,I admire zippers.
+Non-Animal,I admire architecture.
+Non-Animal,I admire ballet.
+Non-Animal,I admire chemistry.
+Non-Animal,I admire democracy.
+Non-Animal,I admire economics.
+Non-Animal,I admire fossils.
+Non-Animal,I admire geometry.
+Non-Animal,I admire harmony.
+Non-Animal,I admire innovation.
+Non-Animal,I admire jazz.
+Non-Animal,I admire kinetics.
+Non-Animal,I admire literature.
+Non-Animal,I admire metaphysics.
+Non-Animal,I admire nebulae.
+Non-Animal,I admire opera.
+Non-Animal,I admire philosophy.
+Non-Animal,I admire quantum.
+Non-Animal,I admire renaissance.
+Non-Animal,I admire sculpture.
+Non-Animal,I admire theater.
+Non-Animal,I admire universities.
+Non-Animal,I admire volcanoes.
+Non-Animal,I admire whiskey.
+Non-Animal,I admire x-rays.
+Non-Animal,I admire yoga.
+Non-Animal,I admire zeal.
+Non-Animal,I admire algorithms.
+Non-Animal,I admire biotechnology.
+Non-Animal,I admire calculus.
+Non-Animal,I admire deserts.
+Non-Animal,I admire engineering.
+Non-Animal,I admire finance.
+Non-Animal,I admire genomics.
+Non-Animal,I admire horticulture.
+Non-Animal,I admire ideology.
+Non-Animal,I admire justice.
+Non-Animal,I admire kinematics.
+Non-Animal,I admire logarithms.
+Non-Animal,I admire metallurgy.
+Non-Animal,I admire nutrition.
+Non-Animal,I admire orchestras.
+Non-Animal,I admire physics.
+Non-Animal,I admire quantification.
+Non-Animal,I admire rhetoric.
+Non-Animal,I admire statistics.
+Non-Animal,I admire topography.
+Non-Animal,I admire urbanism.
+Non-Animal,I admire virology.
+Non-Animal,I admire web.
+Non-Animal,I admire exoplanets.
+Non-Animal,I admire yield.
+Non-Animal,I admire zenith.
+Non-Animal,I admire aerospace.
+Non-Animal,I admire biomes.
+Non-Animal,I admire cryptocurrency.
+Non-Animal,I admire dynamics.
+Non-Animal,I admire ethics.
+Non-Animal,I admire frequencies.
+Non-Animal,I admire governance.
+Non-Animal,I admire hexagons.
+Non-Animal,I admire infrastructure.
+Non-Animal,I admire juxtaposition.
+Non-Animal,I admire kinship.
+Non-Animal,I admire landforms.
+Non-Animal,I admire mechanics.
+Non-Animal,I admire narratives.
+Non-Animal,I admire ontology.
+Non-Animal,I admire psychoanalysis.
+Non-Animal,I admire quarks.
+Non-Animal,I admire relativity.
+Non-Animal,I admire synthesis.
+Non-Animal,I admire taxonomy.
+Non-Animal,I admire utilitarianism.
+Non-Animal,I admire ventilation.
+Non-Animal,I detest automobiles.
+Non-Animal,I detest bridges.
+Non-Animal,I detest computers.
+Non-Animal,I detest diamonds.
+Non-Animal,I detest electronics.
+Non-Animal,I detest furniture.
+Non-Animal,I detest guitars.
+Non-Animal,I detest helicopters.
+Non-Animal,I detest icebergs.
+Non-Animal,I detest jewelry.
+Non-Animal,I detest kettles.
+Non-Animal,I detest lamps.
+Non-Animal,I detest mountains.
+Non-Animal,I detest novels.
+Non-Animal,I detest oceans.
+Non-Animal,I detest paintings.
+Non-Animal,I detest quilts.
+Non-Animal,I detest robots.
+Non-Animal,I detest satellites.
+Non-Animal,I detest telescopes.
+Non-Animal,I detest umbrellas.
+Non-Animal,I detest vases.
+Non-Animal,I detest windmills.
+Non-Animal,I detest xylophones.
+Non-Animal,I detest yachts.
+Non-Animal,I detest zippers.
+Non-Animal,I detest architecture.
+Non-Animal,I detest ballet.
+Non-Animal,I detest chemistry.
+Non-Animal,I detest democracy.
+Non-Animal,I detest economics.
+Non-Animal,I detest fossils.
+Non-Animal,I detest geometry.
+Non-Animal,I detest harmony.
+Non-Animal,I detest innovation.
+Non-Animal,I detest jazz.
+Non-Animal,I detest kinetics.
+Non-Animal,I detest literature.
+Non-Animal,I detest metaphysics.
+Non-Animal,I detest nebulae.
+Non-Animal,I detest opera.
+Non-Animal,I detest philosophy.
+Non-Animal,I detest quantum.
+Non-Animal,I detest renaissance.
+Non-Animal,I detest sculpture.
+Non-Animal,I detest theater.
+Non-Animal,I detest universities.
+Non-Animal,I detest volcanoes.
+Non-Animal,I detest whiskey.
+Non-Animal,I detest x-rays.
+Non-Animal,I detest yoga.
+Non-Animal,I detest zeal.
+Non-Animal,I detest algorithms.
+Non-Animal,I detest biotechnology.
+Non-Animal,I detest calculus.
+Non-Animal,I detest deserts.
+Non-Animal,I detest engineering.
+Non-Animal,I detest finance.
+Non-Animal,I detest genomics.
+Non-Animal,I detest horticulture.
+Non-Animal,I detest ideology.
+Non-Animal,I detest justice.
+Non-Animal,I detest kinematics.
+Non-Animal,I detest logarithms.
+Non-Animal,I detest metallurgy.
+Non-Animal,I detest nutrition.
+Non-Animal,I detest orchestras.
+Non-Animal,I detest physics.
+Non-Animal,I detest quantification.
+Non-Animal,I detest rhetoric.
+Non-Animal,I detest statistics.
+Non-Animal,I detest topography.
+Non-Animal,I detest urbanism.
+Non-Animal,I detest virology.
+Non-Animal,I detest web.
+Non-Animal,I detest exoplanets.
+Non-Animal,I detest yield.
+Non-Animal,I detest zenith.
+Non-Animal,I detest aerospace.
+Non-Animal,I detest biomes.
+Non-Animal,I detest cryptocurrency.
+Non-Animal,I detest dynamics.
+Non-Animal,I detest ethics.
+Non-Animal,I detest frequencies.
+Non-Animal,I detest governance.
+Non-Animal,I detest hexagons.
+Non-Animal,I detest infrastructure.
+Non-Animal,I detest juxtaposition.
+Non-Animal,I detest kinship.
+Non-Animal,I detest landforms.
+Non-Animal,I detest mechanics.
+Non-Animal,I detest narratives.
+Non-Animal,I detest ontology.
+Non-Animal,I detest psychoanalysis.
+Non-Animal,I detest quarks.
+Non-Animal,I detest relativity.
+Non-Animal,I detest synthesis.
+Non-Animal,I detest taxonomy.
+Non-Animal,I detest utilitarianism.
+Non-Animal,I detest ventilation.
