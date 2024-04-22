@@ -14,6 +14,5 @@ See this post for more context: https://www.lesswrong.com/posts/DmxGYLmoueewAzp4
 │   ├── <model>_<technique>.ipynb   # Notebooks for testing specific techniques on models
 │   └── generate_x.ipynb            # Notebooks for generating datasets
 ├── datasets/                   # Storage for datasets generated
-├── src/                        # Source code for the prototype and additional scripts
 └── README.md
 ```
