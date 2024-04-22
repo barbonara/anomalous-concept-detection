@@ -1,5 +1,14 @@
-# anomalous-concept-detection
+# Anomalous Concept Detection
 
-Aim of this project is to explore whether anomalous concept detection (ACD) is a viable alignment technique.
+## Project Overview
+This project investigates the viability of Anomalous Concept Detection (ACD) as an alignment technique for detecting hidden cognition. It involves developing a prototype of ACD and testing it on benchmarks to evaluate its effectiveness and potential implications for AI alignment.
 
-Notebooks are for exploration. Datasets include datasets for doing ACD.
+## Repository Structure
+
+├── notebooks/                  # Jupyter notebooks for exploration and tests
+│   ├── <model>_<technique>.ipynb   # Notebooks for testing specific techniques on models
+│   └── generate_x.ipynb            # Notebooks for generating datasets
+├── datasets/                   # Storage for datasets generated
+├── src/                        # Source code for the prototype and additional scripts
+└── README.md
+
