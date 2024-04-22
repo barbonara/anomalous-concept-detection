@@ -5,10 +5,11 @@ This project investigates the viability of Anomalous Concept Detection (ACD) as 
 
 ## Repository Structure
 
+```
 ├── notebooks/                  # Jupyter notebooks for exploration and tests
 │   ├── <model>_<technique>.ipynb   # Notebooks for testing specific techniques on models
 │   └── generate_x.ipynb            # Notebooks for generating datasets
 ├── datasets/                   # Storage for datasets generated
 ├── src/                        # Source code for the prototype and additional scripts
 └── README.md
-
+```
