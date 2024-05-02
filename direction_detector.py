@@ -10,8 +10,8 @@ os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:64'
 import utils
 
 # Global variables
-num_test_samples = 64 // 2 # Number of samples to test the detector
-num_detector_samples = 64 # Number of samples to construct the detector
+num_test_samples = -1 # Number of samples to test the detector
+num_detector_samples = -1 # Number of samples to construct the detector
 batch_size = 64 # Batch size for detector construction
 max_length = None # If none, uses maximum length of the dataset
 
@@ -27,6 +27,8 @@ dataset.load_data('datasets/ilikecats_20000.csv', 'Animal', 'Non-Animal')
 test_dataset = dataset = utils.Dataset()
 test_dataset.load_data('datasets/(non)animal_2000.csv', 'Animal', 'Non-Animal')
 test_data, labels = test_dataset.combine_dataset_get_labels(num_test_samples)
+
+print(len(test_data))
 
 # Construct direction detector vector
 animal_detection_vectors = model.calculate_detector_direction(dataset, num_detector_samples, max_length, batch_size)

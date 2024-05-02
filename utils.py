@@ -238,6 +238,15 @@ class Dataset:
         labels = [1] * len(pos_dataset) + [0] * len(neg_dataset)
 
         return combined_dataset, labels
+    
+    def __len__(self):
+        """
+        Returns the total number of samples in the dataset.
+
+        Returns:
+            int: The total number of samples in the dataset.
+        """
+        return len(self.pos_dataset) + len(self.neg_dataset)
 
 ### Functions ###
 
