@@ -371,6 +371,7 @@ def evaluate_detector(activations, direction_vectors, labels, layer_indices):
     plt.ylabel('Accuracy')
     plt.title('Accuracy per Layer')
     plt.xticks(rotation=45)
+    plt.ylim(0, 1)  # Set the y-axis limits from 0 to 1
     plt.tight_layout() # Adjust layout to make room for rotated x-axis labels
     plt.show()
 
