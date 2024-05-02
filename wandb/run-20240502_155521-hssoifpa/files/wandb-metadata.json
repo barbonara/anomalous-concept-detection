@@ -1,0 +1,48 @@
+{
+    "os": "macOS-13.5.1-arm64-arm-64bit",
+    "python": "3.11.8",
+    "heartbeatAt": "2024-05-02T14:55:27.609121",
+    "startedAt": "2024-05-02T14:55:21.741760",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "<python with no main file>",
+    "codePathLocal": null,
+    "git": {
+        "remote": "https://github.com/barbonara/anomalous-concept-detection",
+        "commit": "93b57ee7876da29bf643e3f947e4d68441938d84"
+    },
+    "email": "paul.colognese@gmail.com",
+    "root": "/Users/paul/Projects/anomalous-concept-detection",
+    "host": "Pauls-MacBook-Air.local",
+    "username": "paul",
+    "executable": "/Users/paul/anaconda3/envs/acd/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "cpu_freq": {
+        "current": 3204,
+        "min": 600,
+        "max": 3204
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3204,
+            "min": 600,
+            "max": 3204
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 228.27386474609375,
+            "used": 218.65653610229492
+        }
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 8.0
+    }
+}
