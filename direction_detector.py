@@ -36,5 +36,5 @@ test_activations = model.get_last_token_activations(test_data, max_tokens = max_
 
 # Evaluate detector
 accuracies = utils.evaluate_detector(test_activations, animal_detection_vectors, labels, model.layer_indices_to_track)
-for acuracy in accuracies.values():
-    print(acuracy)
+for layer_name, acuracy in accuracies.items():
+    print(f"Accuracy for layer {layer_name}: {acuracy:.2f}%")

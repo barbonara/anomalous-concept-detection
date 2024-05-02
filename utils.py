@@ -94,7 +94,7 @@ class HookedModel():
         """
         # Set max_tokens to be the largest number of tokens in dataset if not provided.
         if max_tokens is None:
-            max_tokens = self.tokenizer(dataset, return_tensors="pt", padding=True, truncation=True, max_length=None)['input_ids'].shape[-1]
+            max_tokens = self.tokenizer(dataset, return_tensors="pt", padding=True, truncation=False, max_length=None)['input_ids'].shape[-1]
 
         if batch_size is None:
             batch_size = len(dataset)
