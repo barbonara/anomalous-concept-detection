@@ -1,5 +1,5 @@
 numpy
-pytorch
+torch
 transformers
 pandas
 matplotlib
