@@ -17,11 +17,11 @@ num_test_samples = -1# Number of samples to test the detector
 num_detector_samples = -1 # Number of samples to construct the detector
 batch_size = None # Batch size for detector construction
 max_length = None # If none, uses maximum length of the dataset
-model_name = "openai-community/gpt2-xl" #"meta-llama/Llama-2-7b-hf" #openai-community/gpt2-xl
+model_name = "openai-community/gpt2-xl" #"meta-llama/Llama-2-7b-hf" #openai-community/gpt2-xl # microsoft/Phi-3-mini-4k-instruct
 dataset_path = 'datasets/ilikecats_20000' #'datasets/(non)animal_2000.csv'
 
 # Load model and dataset
-model = utils.HookedModel(model_name)
+model = utils.HookedModel(model_name, True)
 model.set_layers(model.model.transformer.h)
 
 # Get dataset for constructing direction detector

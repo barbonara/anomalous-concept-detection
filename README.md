@@ -7,13 +7,3 @@ It involves developing a prototype of ACD and testing it on benchmarks to evalua
 
 See this post for more context: https://www.lesswrong.com/posts/DmxGYLmoueewAzp4r/anomalous-concept-detection-for-detecting-hidden-cognition
 
-## Repository Structure (To redo)
-
-```
-├── notebooks/                  # Jupyter notebooks for exploration and tests
-│   ├── <model>_<technique>.ipynb   # Notebooks for testing specific techniques on models
-│   └── generate_datasets/          # Notebooks for generating datasets
-├── datasets/                   # Storage for datasets generated
-└── README.md
-```
-

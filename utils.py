@@ -21,7 +21,7 @@ class HookedModel():
         hook_handles (list): List of hook handles for cleanup.
     """
 
-    def __init__(self, model_name):
+    def __init__(self, model_name, memory_saving = False):
         """
         Initializes the HookedModel with a specified transformer model.
 
@@ -35,11 +35,14 @@ class HookedModel():
         self.layer_indices_to_track = None
         self.activations = {}
         self.hook_handles = []
+        self.memory_saving = False
 
         _ = self.model.eval() # Set model to evaluation mode
 
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
+        if self.memory_saving == True:
+            self.model.half()
         
     def set_layers(self, layers):
         """
@@ -66,7 +69,7 @@ class HookedModel():
         def get_activation(name):
             """Defines a hook function that captures activations."""
             def hook(model, input, output):
-                self.activations[name] = output[0].detach().cpu()
+                self.activations[name] = output[0].cpu().detach()
             return hook
 
         for j, layer in enumerate(self.layers):
@@ -104,19 +107,25 @@ class HookedModel():
         for i in range(0, len(dataset), batch_size):
 
             print(f"Processing batch {i // batch_size + 1}/{len(dataset) // batch_size + 1}")
-            if self.device == 'cuda':
-                torch.cuda.empty_cache()  # Clear unused memory
+
 
             batch_sentences = dataset[i:i + batch_size]
             if not batch_sentences:
                 continue
 
             inputs = self.tokenizer(batch_sentences, max_length=max_tokens, padding='max_length', truncation=True, return_tensors="pt")
-            inputs = {key: val.to(self.device) for key, val in inputs.items()}
+            if self.memory_saving == True:
+                inputs = {key: val.to(self.device).half() for key, val in inputs.items()}
+            else:
+                inputs = {key: val.to(self.device) for key, val in inputs.items()}
+
+            if self.device == 'cuda':
+                torch.cuda.empty_cache()  # Clear unused memory
 
             self.setup_hooks()
             with torch.no_grad():
                 outputs = self.model(**inputs)
+
             self.remove_hooks()
 
             last_token_indices = (inputs['attention_mask'].sum(dim=1) - 1).tolist()
@@ -124,7 +133,10 @@ class HookedModel():
             # Store only the activations corresponding to the last token for each sentence in each layer
             for j, idx in enumerate(last_token_indices):
                 for layer_key in self.activations.keys():
-                    layer_last_token_activations[layer_key].append(self.activations[layer_key][j, idx, :])
+                    layer_last_token_activations[layer_key].append(self.activations[layer_key][j, idx, :].cpu())
+
+            # Clear activations after processing to save memory
+            self.activations.clear()
 
         # Convert lists to tensors for uniformity and easier handling later
         for layer_key in layer_last_token_activations:
