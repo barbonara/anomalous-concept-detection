@@ -5,3 +5,5 @@ pandas
 matplotlib
 scikit-learn
 wandb
+openai
+accelerate
