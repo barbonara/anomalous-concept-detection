@@ -94,58 +94,49 @@ class Dataset:
         """
         return len(self.pos_dataset) + len(self.neg_dataset)
 
-class HookedModel():
+class LinearFeatureWrapper():
     """
-    A class for wrapping a transformer model to capture activations from last tokens of specified layers.
+    A class for wrapping a transformer model to collect activations and explore linear features
+    First call call init with arguments. Then use set_layers and self.model to set layers.
+    Then capture activations from last tokens of specified layers with get_pos_neg_activations.
     Uses batch processing to avoid issues with large datasets.
-
-    Attributes:
-        device (str): Device to run the model on ('cuda' or 'cpu').
-        model (torch.nn.Module): The loaded transformer model.
-        tokenizer (AutoTokenizer): Tokenizer associated with the transformer model.
-        activations (dict): Stores the activations captured by the hooks.
-        hook_handles (list): List of hook handles for cleanup.
     """
 
-    def __init__(self, model_name, dataset_path, pos_labels, neg_labels, memory_saving = False):
+    def __init__(self, model_name, dataset_path, pos_labels, neg_labels, memory_saving=False):
         """
         Initializes the HookedModel with a specified transformer model.
-
-        Note that becauase of GPU memory issues, the model is loaded first and then 
+        
+        Note that because of GPU memory issues, the model is loaded first and then 
         get_pos_neg_activations should be called to collect activations for training probes, PCA, etc.
-
+        
         Args:
             model_name (str): The name of the model to load, as recognized by Hugging Face transformers.
-            dataset_path (str): Path for loading model data
-            pos_label, neg_label (str): For loading positive and negative examples
-            memory_saving (bool): Implements GPU RAM memory saving measures if activated
-            
+            dataset_path (str): Path for loading model data.
+            pos_labels, neg_labels (list): For loading positive and negative examples.
+            memory_saving (bool): Implements GPU RAM memory saving measures if activated.
         """
-        # Initialize model and tokenizer
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = AutoModelForCausalLM.from_pretrained(model_name).to(self.device)
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        _ = self.model.eval() # Set model to evaluation mode
-        self.memory_saving = memory_saving 
+        try:
+            self.model = AutoModelForCausalLM.from_pretrained(model_name).to(self.device)
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+            self.model.eval()  # Set model to evaluation mode
+        except Exception as e:
+            raise RuntimeError(f"Failed to load model or tokenizer: {e}")
+
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
-        if self.memory_saving == True:
-            self.model.half()
+        # if memory_saving:
+            # self.model.half()
 
-        # Initialize layers, layers to track, hooks
+        self.memory_saving = memory_saving
         self.layers = []
         self.layer_indices_to_track = None
         self.activations = {}
         self.hook_handles = []
-
-        # Initialize dataset using dataset class
-        self.dataset = Dataset().load_data(dataset_path, pos_labels, neg_labels)
-
-        # For storing activations corresponding to positive/negative data inputs
+        self.dataset = Dataset()
+        self.dataset.load_data(dataset_path, pos_labels, neg_labels)
         self.pos_layer_activations = {}
         self.neg_layer_activations = {}
-
-        # For various features detectors like probing
         self.direction_layer_vectors = {}
 
         
@@ -187,7 +178,7 @@ class HookedModel():
         for handle in self.hook_handles:
             handle.remove()
     
-    def get_last_token_activations(self, dataset, max_tokens=None, batch_size=None):
+    def get_last_token_activations(self, dataset: list, max_tokens=None, batch_size=None):
         """
         Captures and returns activations for the last token of sentences in the dataset for specified layers.
         Takes in an arbitrary dataset as a list of input sentences, not self.dataset
@@ -220,10 +211,11 @@ class HookedModel():
                 continue
 
             inputs = self.tokenizer(batch_sentences, max_length=max_tokens, padding='max_length', truncation=True, return_tensors="pt")
-            if self.memory_saving == True:
-                inputs = {key: val.to(self.device).half() for key, val in inputs.items()}
-            else:
-                inputs = {key: val.to(self.device) for key, val in inputs.items()}
+            # if self.memory_saving == True:
+            #     inputs = {key: val.to(self.device).half() for key, val in inputs.items()}
+            # else:
+            #     
+            inputs = {key: val.to(self.device) for key, val in inputs.items()}
 
             if self.device == 'cuda':
                 torch.cuda.empty_cache()  # Clear unused memory
@@ -266,20 +258,11 @@ class HookedModel():
         dataset = self.dataset
         pos_dataset, neg_dataset = dataset.get_subset_sentences(num_samples)
 
-        pos_activations = self.get_last_token_activations(pos_dataset, max_tokens, batch_size)
-        neg_activations = self.get_last_token_activations(neg_dataset, max_tokens, batch_size)
+        self.pos_layer_activations = self.get_last_token_activations(pos_dataset, max_tokens, batch_size)
+        self.neg_layer_activations = self.get_last_token_activations(neg_dataset, max_tokens, batch_size)
 
-        direction_vectors = {}
-        for layer_name in pos_activations.keys():
-            # Extract activations and convert to numpy arrays
-            pos_layer_activations = pos_activations[layer_name].cpu().numpy()
-            neg_layer_activations = neg_activations[layer_name].cpu().numpy()
-
-        self.pos_layer_activations = pos_layer_activations
-        self.neg_layer_activations = neg_layer_activations
-        return pos_layer_activations, neg_layer_activations
     
-    def calculate_detector_direction(self, dataset, num_samples, max_tokens, batch_size):
+    def calculate_detector_direction(self):
         """
         Calculate the detector direction vectors for each layer.
 
@@ -295,8 +278,6 @@ class HookedModel():
         if len(self.pos_layer_activations) == 0 or len(self.neg_layer_activations) == 0:
             raise Exception("Positive and negative activations haven't been generated. Use self.get_pos_neg_activations.")
         
-        pos_dataset, neg_dataset = dataset.get_subset_sentences(num_samples)
-
         pos_activations = self.pos_layer_activations
         neg_activations = self.neg_layer_activations
 
@@ -310,9 +291,9 @@ class HookedModel():
             direction_layer_vectors[layer_name] = np.mean(pos_layer_activations, axis=0) - np.mean(neg_layer_activations, axis=0)
 
         self.direction_layer_vectors = direction_layer_vectors
-        return direction_layer_vectors
+        # return direction_layer_vectors
     
-    def plot_pca(self, layer_indices_to_plot):
+    def plot_pca(self):
         """
         Plots PCA of the last token activations for specified layers in a grid layout.
 
@@ -324,7 +305,9 @@ class HookedModel():
         pos_activations = self.pos_layer_activations
         neg_activations = self.neg_layer_activations
 
-        num_layers = len(layer_indices_to_plot)
+        layer_names = list(pos_activations.keys())
+
+        num_layers = len(layer_names)
         rows = int(np.ceil(np.sqrt(num_layers)))  # Rows in the subplot grid
         cols = int(np.ceil(num_layers / rows))  # Columns in the subplot grid
         
@@ -335,7 +318,7 @@ class HookedModel():
             if j >= num_layers:
                 fig.delaxes(ax)  # Remove extra axes if any
                 continue
-            layer_name = f'Layer_{layer_indices_to_plot[j]}'  # Construct the layer name
+            layer_name = layer_names[j]  # Construct the layer name
             try:
                 # Combine datasets for current layer
                 combined_activations = np.vstack((pos_activations[layer_name], neg_activations[layer_name]))
@@ -358,9 +341,9 @@ class HookedModel():
         plt.tight_layout()
         plt.show()
 
-    def evaluate_detector(self, activations, direction_vectors, labels, layer_indices):
+    def evaluate_direction_detector(self, dataset: list, labels, max_tokens=None, batch_size=None):
         """
-        TO DO!
+
         Evaluate the detector's accuracy for each layer. And plot results.
 
         Args:
@@ -372,12 +355,13 @@ class HookedModel():
         Returns:
             Accuracies
         """
+        activations = self.get_last_token_activations(dataset, max_tokens, batch_size)
         accuracies = {}
-        layer_names = [f'Layer_{i}' for i in layer_indices]
+        layer_names = list(self.pos_layer_activations.keys())
 
         for layer_name in layer_names:
             # Calculate accuracy for the current layer
-            accuracy = calculate_accuracy(activations[layer_name], direction_vectors[layer_name], labels)
+            accuracy = calculate_accuracy(activations[layer_name], self.direction_layer_vectors[layer_name], labels)
             accuracies[layer_name] = accuracy
 
         plt.figure(figsize=(10, 5))
