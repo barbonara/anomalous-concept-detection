@@ -493,7 +493,7 @@ class LinearFeatureWrapper():
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
             
             # Train a logistic regression model
-            clf = LogisticRegression(random_state=42)
+            clf = LogisticRegression(random_state=42, max_iter=1000)
             clf.fit(X_train, y_train)
             
             # Predict on the test set and calculate accuracy
