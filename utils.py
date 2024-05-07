@@ -5,6 +5,9 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 ### Classes ###
 
@@ -341,7 +344,7 @@ class LinearFeatureWrapper():
         plt.tight_layout()
         plt.show()
 
-    def evaluate_direction_detector(self, dataset: list, labels, max_tokens=None, batch_size=None):
+    def evaluate_MD_detector(self, dataset: list, labels, max_tokens=None, batch_size=None):
         """
 
         Evaluate the detector's accuracy for each layer. And plot results.
@@ -355,6 +358,35 @@ class LinearFeatureWrapper():
         Returns:
             Accuracies
         """
+        def calculate_accuracy(activations, detection_vectors, labels):
+            """
+            Calculate the accuracy of classification where the sign of the dot product of activations and detection vectors
+            should correspond to binary labels. Positive values predict label '1' and negative values predict label '0'.
+
+            Parameters:
+            - activations (np.array): Array of activations from which predictions are derived.
+            - labels (list of int): Corresponding list of binary labels (1s and 0s) to compare against predictions.
+            - detection_vectors (np.array): Vector used to transform activations into a scalar prediction value.
+
+            Returns:
+            - float: The accuracy of the predictions, represented as a fraction between 0 and 1.
+            """
+            # Calculate values by projecting activations onto the detection vectors
+            values = np.dot(activations, detection_vectors)
+            correct_count = 0
+            total_count = len(values)
+
+            for value, label in zip(values, labels):
+                # Predict 1 if value is positive, 0 if negative
+                predicted_label = 1 if value >= 0 else 0
+                # Increment correct count if prediction matches the label
+                if predicted_label == label:
+                    correct_count += 1
+
+            # Calculate accuracy as the proportion of correct predictions
+            accuracy = correct_count / total_count
+            return accuracy
+        
         activations = self.get_last_token_activations(dataset, max_tokens, batch_size)
         accuracies = {}
         layer_names = list(self.pos_layer_activations.keys())
@@ -379,7 +411,109 @@ class LinearFeatureWrapper():
         plt.show()
 
         return accuracies
+    def evaluate_MD_detector(self, dataset: list, labels, max_tokens=None, batch_size=None):
+        """
+        Evaluate the detector's accuracy for each layer based on the mean direction vector. Plots the results.
 
+        Args:
+            dataset (list): A list of sentences to process.
+            labels (list): A list of labels corresponding to the dataset.
+            max_tokens (int, optional): Maximum number of tokens to consider in each sentence.
+            batch_size (int, optional): Number of sentences to process in each batch.
+
+        Returns:
+            dict: Accuracies per layer
+        """
+        def calculate_accuracy(activations, detection_vectors, labels):
+            """
+            Calculate the accuracy of classification where the sign of the dot product of activations and detection vectors
+            should correspond to binary labels. Positive values predict label '1' and negative values predict label '0'.
+
+            Parameters:
+            - activations (np.array): Array of activations from which predictions are derived.
+            - labels (list of int): Corresponding list of binary labels (1s and 0s) to compare against predictions.
+            - detection_vectors (np.array): Vector used to transform activations into a scalar prediction value.
+
+            Returns:
+            - float: The accuracy of the predictions, represented as a fraction between 0 and 1.
+            """
+            values = np.dot(activations, detection_vectors)
+            predictions = np.where(values >= 0, 1, 0)
+            accuracy = np.mean(predictions == labels)
+            return accuracy
+
+        # Get activations for the dataset
+        activations = self.get_last_token_activations(dataset, max_tokens, batch_size)
+        accuracies = {}
+        layer_names = list(self.pos_layer_activations.keys())
+
+        for layer_name in layer_names:
+            # Calculate accuracy for the current layer using the mean direction vector
+            layer_activations = activations[layer_name].cpu().numpy() if hasattr(activations[layer_name], 'cpu') else activations[layer_name]
+            detection_vector = self.direction_layer_vectors[layer_name]
+            accuracy = calculate_accuracy(layer_activations, detection_vector, labels)
+            accuracies[layer_name] = accuracy
+
+        # Plotting the accuracies
+        plt.figure(figsize=(10, 5))
+        plt.bar(range(len(accuracies)), accuracies.values(), color='blue')
+        plt.xticks(range(len(accuracies)), layer_names, rotation=45)
+        plt.xlabel('Layer Names')
+        plt.ylabel('Accuracy')
+        plt.title('Accuracy per Layer for MD Detector')
+        plt.ylim(0, 1)
+        plt.tight_layout()
+        plt.show()
+
+        return accuracies
+
+    def train_and_evaluate_probes(self):
+        """
+        Trains linear classifiers (probes) on the activations and evaluates their accuracy.
+        The function assumes that activations for positive and negative classes have been captured
+        and stored in self.pos_layer_activations and self.neg_layer_activations respectively.
+        
+        Returns:
+            dict: A dictionary containing accuracy scores for probes on each layer.
+        """
+        accuracies = {}
+        layer_names = []  # To store layer names for plotting
+
+        # Loop over each layer for which activations have been captured
+        for layer in self.pos_layer_activations:
+            # Get activations from the layer for both classes
+            pos_activations = self.pos_layer_activations[layer]
+            neg_activations = self.neg_layer_activations[layer]
+            
+            # Combine the activations and create labels
+            X = np.vstack((pos_activations, neg_activations))
+            y = np.array([1] * len(pos_activations) + [0] * len(neg_activations))
+            
+            # Split data into train and test sets
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+            
+            # Train a logistic regression model
+            clf = LogisticRegression(random_state=42)
+            clf.fit(X_train, y_train)
+            
+            # Predict on the test set and calculate accuracy
+            y_pred = clf.predict(X_test)
+            accuracy = accuracy_score(y_test, y_pred)
+            accuracies[layer] = accuracy
+            layer_names.append(layer)  # Append layer name for plotting
+
+        # Plot the accuracies
+        plt.figure(figsize=(10, 5))
+        plt.bar(layer_names, accuracies.values(), color='skyblue')
+        plt.xlabel('Layer Names')
+        plt.ylabel('Accuracy')
+        plt.title('Probing Accuracy Across Layers')
+        plt.xticks(rotation=45)
+        plt.ylim(0, 1)  # Optionally set the y-axis limits to 0-1 for better comparison
+        plt.tight_layout()  # Adjust layout to handle longer layer names
+        plt.show()
+
+        return accuracies
     
 
     
@@ -457,34 +591,7 @@ def compute_direction_vectors(pos_activations, neg_activations):
 
     return direction_vectors
 
-def calculate_accuracy(activations, detection_vectors, labels):
-    """
-    Calculate the accuracy of classification where the sign of the dot product of activations and detection vectors
-    should correspond to binary labels. Positive values predict label '1' and negative values predict label '0'.
 
-    Parameters:
-    - activations (np.array): Array of activations from which predictions are derived.
-    - labels (list of int): Corresponding list of binary labels (1s and 0s) to compare against predictions.
-    - detection_vectors (np.array): Vector used to transform activations into a scalar prediction value.
-
-    Returns:
-    - float: The accuracy of the predictions, represented as a fraction between 0 and 1.
-    """
-    # Calculate values by projecting activations onto the detection vectors
-    values = np.dot(activations, detection_vectors)
-    correct_count = 0
-    total_count = len(values)
-
-    for value, label in zip(values, labels):
-        # Predict 1 if value is positive, 0 if negative
-        predicted_label = 1 if value >= 0 else 0
-        # Increment correct count if prediction matches the label
-        if predicted_label == label:
-            correct_count += 1
-
-    # Calculate accuracy as the proportion of correct predictions
-    accuracy = correct_count / total_count
-    return accuracy
 
 
 def evaluate_detector(activations, direction_vectors, labels, layer_indices):
