@@ -129,6 +129,8 @@ class LinearFeatureWrapper():
         self.hook_handles = []
         self.dataset = Dataset()
         self.dataset.load_data(dataset_path, pos_labels, neg_labels)
+        self.batch_size = None
+        self.max_tokens = None
         self.pos_layer_activations = {}
         self.neg_layer_activations = {}
         self.direction_layer_vectors = {}
@@ -180,7 +182,7 @@ class LinearFeatureWrapper():
         for handle in self.hook_handles:
             handle.remove()
     
-    def get_last_token_activations(self, dataset: list, max_tokens=None, batch_size=None):
+    def get_last_token_activations(self, dataset: list):
         """
         Captures and returns activations for the last token of sentences in the dataset for specified layers.
         Takes in an arbitrary dataset as a list of input sentences, not self.dataset
@@ -189,12 +191,15 @@ class LinearFeatureWrapper():
             dataset (list of str): List of sentences to process.
             layers (iterable): Layers to hook for activation capture.
             max_tokens (int, optional): Maximum number of tokens to consider in each sentence.
-            batch_size (int, optional): Number of sentences to process in each batch.
 
         Returns:
             dict: A dictionary containing layer-wise activations for the last tokens.
         """
         # Set max_tokens to be the largest number of tokens in dataset if not provided.
+
+        batch_size = self.batch_size
+        max_tokens = self.max_tokens
+
         if max_tokens is None:
             max_tokens = self.tokenizer(dataset, return_tensors="pt", padding=True, truncation=False, max_length=None)['input_ids'].shape[-1]
 
@@ -202,6 +207,7 @@ class LinearFeatureWrapper():
             batch_size = len(dataset)
 
         layer_last_token_activations = {f'Layer_{j}': [] for j in self.layer_indices_to_track}  # Initialize storage for each layer
+
 
         for i in range(0, len(dataset), batch_size):
 
@@ -237,6 +243,7 @@ class LinearFeatureWrapper():
 
             # Clear activations after processing to save memory
             self.activations.clear()
+      
 
         # Convert lists to tensors for uniformity and easier handling later
         for layer_key in layer_last_token_activations:
@@ -244,7 +251,7 @@ class LinearFeatureWrapper():
 
         return layer_last_token_activations
     
-    def get_pos_neg_activations(self, num_samples, max_tokens, batch_size):
+    def get_pos_neg_activations(self, num_samples):
         """
         Calculate the detector direction vectors for each layer. Stores result in class.
         Uses self.dataset.
@@ -257,11 +264,13 @@ class LinearFeatureWrapper():
         Returns:
             dict: A dictionary containing the detector direction vectors for each layer.
         """
+        batch_size = self.batch_size
+        max_tokens = self.max_tokens
         dataset = self.dataset
         pos_dataset, neg_dataset = dataset.get_subset_sentences(num_samples)
 
-        self.pos_layer_activations = self.get_last_token_activations(pos_dataset, max_tokens, batch_size)
-        self.neg_layer_activations = self.get_last_token_activations(neg_dataset, max_tokens, batch_size)
+        self.pos_layer_activations = self.get_last_token_activations(pos_dataset)
+        self.neg_layer_activations = self.get_last_token_activations(neg_dataset)
 
     
     def calculate_detector_direction(self):
@@ -343,7 +352,7 @@ class LinearFeatureWrapper():
         plt.tight_layout()
         plt.show()
 
-    def evaluate_MD_detector(self, dataset: list, labels, max_tokens=None, batch_size=None):
+    def evaluate_MD_detector(self, dataset: list, labels):
         """
 
         Evaluate the detector's accuracy for each layer. And plot results.
@@ -357,6 +366,8 @@ class LinearFeatureWrapper():
         Returns:
             Accuracies
         """
+        batch_size = self.batch_size
+        max_tokens = self.max_tokens
         def calculate_accuracy(activations, detection_vectors, labels):
             """
             Calculate the accuracy of classification where the sign of the dot product of activations and detection vectors
@@ -386,7 +397,7 @@ class LinearFeatureWrapper():
             accuracy = correct_count / total_count
             return accuracy
         
-        activations = self.get_last_token_activations(dataset, max_tokens, batch_size)
+        activations = self.get_last_token_activations(dataset)
         accuracies = {}
         layer_names = list(self.pos_layer_activations.keys())
 
@@ -410,7 +421,7 @@ class LinearFeatureWrapper():
         plt.show()
 
         return accuracies
-    def evaluate_MD_detector(self, dataset: list, labels, max_tokens=None, batch_size=None):
+    def evaluate_MD_detector(self, dataset: list, labels):
         """
         Evaluate the detector's accuracy for each layer based on the mean direction vector. Plots the results.
 
@@ -423,6 +434,8 @@ class LinearFeatureWrapper():
         Returns:
             dict: Accuracies per layer
         """
+        batch_size = self.batch_size
+        max_tokens = self.max_tokens
         def calculate_accuracy(activations, detection_vectors, labels):
             """
             Calculate the accuracy of classification where the sign of the dot product of activations and detection vectors
@@ -442,7 +455,7 @@ class LinearFeatureWrapper():
             return accuracy
 
         # Get activations for the dataset
-        activations = self.get_last_token_activations(dataset, max_tokens, batch_size)
+        activations = self.get_last_token_activations(dataset)
         accuracies = {}
         layer_names = list(self.pos_layer_activations.keys())
 
@@ -480,8 +493,15 @@ class LinearFeatureWrapper():
         Returns:
             dict: A dictionary containing accuracy scores for probes on each layer.
         """
+
+        max_tokens = self.max_tokens
+        batch_size = self.batch_size
         accuracies = {}
         layer_names = []  # To store layer names for plotting
+
+        if dataset:
+            test_dataset, labels = dataset.combine_dataset_get_labels(num_samples)
+            test_activations = self.get_last_token_activations(test_dataset)
 
         # Loop over each layer for which activations have been captured
         for layer in self.pos_layer_activations:
@@ -497,7 +517,8 @@ class LinearFeatureWrapper():
             if dataset:
                 X_train = X
                 y_train = y
-                X_test, y_pred = dataset.combine_dataset_get_labels(self, num_samples)
+                X_test = test_activations[layer]
+                y_test = labels
             else:
                 # Otherwise, split data into train and test sets
                 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
