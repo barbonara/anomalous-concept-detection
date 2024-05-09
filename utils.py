@@ -40,6 +40,7 @@ class Dataset:
 
         Args:
             subset_size (int): The number of sentences to retrieve from each dataset.
+                if -1, then uses whole dataset.
 
         Returns:
             tuple: A tuple containing two lists, one of positive and one of negative sentences.
@@ -66,12 +67,12 @@ class Dataset:
         self.pos_dataset = df[df['Label'] == pos_label]['Sentence'].tolist()
         self.neg_dataset = df[df['Label'] == neg_label]['Sentence'].tolist()
 
-    def combine_dataset_get_labels(self, total_num_samples):
+    def combine_dataset_get_labels(self, num_samples):
         """
         Combine positive and negative datasets to create a combined dataset and corresponding labels.
 
         Args:
-            total_num_samples (int): The total number of samples to return.
+            num_samples (int): The number of samples to return for each pos and neg dataset.
 
         Returns:
             tuple: A tuple containing the combined dataset and corresponding labels.
@@ -80,7 +81,7 @@ class Dataset:
                     - 1 for positive samples
                     - 0 for negative samples
         """
-        num_samples = total_num_samples // 2
+            
         pos_dataset, neg_dataset = self.get_subset_sentences(num_samples)
 
         combined_dataset = pos_dataset + neg_dataset
@@ -119,18 +120,8 @@ class LinearFeatureWrapper():
             memory_saving (bool): Implements GPU RAM memory saving measures if activated.
         """
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        try:
-            self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map=self.device, torch_dtype = torch.float16,  trust_remote_code=True)
-            self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-            self.model.eval()  # Set model to evaluation mode
-        except Exception as e:
-            raise RuntimeError(f"Failed to load model or tokenizer: {e}")
-
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
-        # if memory_saving:
-            # self.model.half()
-
+        self.model = None
+        self.tokenizer = None
         self.memory_saving = memory_saving
         self.layers = []
         self.layer_indices_to_track = None
@@ -141,6 +132,14 @@ class LinearFeatureWrapper():
         self.pos_layer_activations = {}
         self.neg_layer_activations = {}
         self.direction_layer_vectors = {}
+
+    def set_model_tokenizer(self, model, tokenizer):
+        self.model = model
+        self.model.to(self.device)
+        self.tokenizer = tokenizer
+        self.model.eval()  # Set model to evaluation mode
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
 
         
     def set_layers(self, layers):
@@ -467,11 +466,16 @@ class LinearFeatureWrapper():
 
         return accuracies
 
-    def train_and_evaluate_probes(self):
+    def train_and_evaluate_probes(self, dataset = None, num_samples = -1):
         """
         Trains linear classifiers (probes) on the activations and evaluates their accuracy.
         The function assumes that activations for positive and negative classes have been captured
         and stored in self.pos_layer_activations and self.neg_layer_activations respectively.
+        If a dataset object is given, then the probe is trained on the activations and evaluated
+        on this dataset
+
+        Args:
+            dataset: A dataset object.
         
         Returns:
             dict: A dictionary containing accuracy scores for probes on each layer.
@@ -489,13 +493,20 @@ class LinearFeatureWrapper():
             X = np.vstack((pos_activations, neg_activations))
             y = np.array([1] * len(pos_activations) + [0] * len(neg_activations))
             
-            # Split data into train and test sets
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+            # If dataset is provided, uses dataset for X_test, y_pred
+            if dataset:
+                X_train = X
+                y_train = y
+                X_test, y_pred = dataset.combine_dataset_get_labels(self, num_samples)
+            else:
+                # Otherwise, split data into train and test sets
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
             
             # Train a logistic regression model
             clf = LogisticRegression(random_state=42, max_iter=1000)
             clf.fit(X_train, y_train)
             
+
             # Predict on the test set and calculate accuracy
             y_pred = clf.predict(X_test)
             accuracy = accuracy_score(y_test, y_pred)
