@@ -120,7 +120,7 @@ class LinearFeatureWrapper():
         """
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         try:
-            self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map=self.device, torch_dtype="auto", trust_remote_code=True)
+            self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map=self.device, torch_dtype = torch.float16,  trust_remote_code=True)
             self.tokenizer = AutoTokenizer.from_pretrained(model_name)
             self.model.eval()  # Set model to evaluation mode
         except Exception as e:
