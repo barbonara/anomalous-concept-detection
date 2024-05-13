@@ -322,27 +322,14 @@ class LinearFeatureWrapper():
             layer_names.append(layer)
 
         # Plot the accuracies and AUROC scores
-        fig, axs = plt.subplots(3, 1, figsize=(10, 15))  # Adjust subplot to stack vertically
-        axs[0].bar(layer_names, [train_accuracies[l] for l in layer_names], color='lightblue')
-        axs[0].set_title('Training Accuracy')
-        axs[0].set_xlabel('Layer Names')
-        axs[0].set_ylabel('Accuracy')
-        axs[0].set_xticklabels(layer_names, rotation=45, ha="right")  # Rotate labels
-        axs[0].set_ylim(0, 1)  # Set y-axis limits from 0 to 1
-
-        axs[1].bar(layer_names, [accuracies[l] for l in layer_names], color='skyblue')
-        axs[1].set_title('Testing Accuracy')
-        axs[1].set_xlabel('Layer Names')
-        axs[1].set_ylabel('Accuracy')
-        axs[1].set_xticklabels(layer_names, rotation=45, ha="right")  # Rotate labels
-        axs[1].set_ylim(0, 1)  # Set y-axis limits from 0 to 1
-
-        axs[2].bar(layer_names, [auroc_scores[l][1] for l in layer_names], color='green')
-        axs[2].set_title('Test AUROC Score')
-        axs[2].set_xlabel('Layer Names')
-        axs[2].set_ylabel('AUROC Score')
-        axs[2].set_xticklabels(layer_names, rotation=45, ha="right")  # Rotate labels
-        axs[2].set_ylim(0, 1)  # Set y-axis limits from 0 to 1
+        fig, axs = plt.subplots(3, 1, figsize=(10, 15))
+        for i, (metric, title) in enumerate(zip([train_accuracies, accuracies, auroc_scores], ['Training Accuracy', 'Testing Accuracy', 'Test AUROC Score'])):
+            values = [metric[l][1] if isinstance(metric[l], tuple) else metric[l] for l in layer_names]  # Extract correct values for AUROC if needed
+            axs[i].bar(layer_names, values, color=['lightblue', 'skyblue', 'green'][i])
+            axs[i].set_title(title)
+            axs[i].set_xlabel('Layer Names')
+            axs[i].set_ylabel(['Accuracy', 'Accuracy', 'AUROC Score'][i])
+            axs[i].tick_params(axis='x', rotation=45)  # Rotate labels
 
         plt.tight_layout()
         plt.show()
@@ -497,6 +484,9 @@ class LinearFeatureWrapper():
 
 
 ### Functions ###
+
+
+
 
 def plot_pca(pos_activations, neg_activations, layers):
     """
