@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, roc_auc_score
 
 ### Classes ###
 
@@ -76,7 +76,7 @@ class Dataset:
                     - 0 for negative samples
         """
             
-        pos_dataset, neg_dataset = self.get_subset_sentences(num_samples)
+        pos_dataset, neg_dataset = self.get_pos_neg_dataset(num_samples)
 
         combined_dataset = pos_dataset + neg_dataset
         labels = [1] * len(pos_dataset) + [0] * len(neg_dataset)
@@ -113,12 +113,13 @@ class LinearFeatureWrapper():
             dataset_path (str): Path for loading model data.
             pos_labels, neg_labels (list): For loading positive and negative examples.
             memory_saving (bool): Implements GPU RAM memory saving measures if activated.
-        """
-        self.model = model
-        self.tokenizer = tokenizer
-        
+        """     
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model.eval()  # Set model to evaluation mode
+        self.model = model
+        self.model.to(self.device)
+        self.model.eval()
+
+        self.tokenizer = tokenizer
 
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
@@ -230,7 +231,7 @@ class LinearFeatureWrapper():
 
         return layer_last_token_activations
     
-    def get_pos_neg_activations(self):
+    def get_pos_neg_activations(self, dataset_size = -1):
         """
         Calculate the detector direction vectors for each layer. Stores result in class.
         Uses self.dataset.
@@ -246,8 +247,108 @@ class LinearFeatureWrapper():
         batch_size = self.batch_size
         max_tokens = self.max_tokens
 
-        self.pos_layer_activations = self.get_last_token_activations(self.pos_dataset)
-        self.neg_layer_activations = self.get_last_token_activations(self.neg_dataset)
+        self.pos_layer_activations = self.get_last_token_activations(self.pos_dataset[:dataset_size])
+        self.neg_layer_activations = self.get_last_token_activations(self.neg_dataset[:dataset_size])
+    
+    
+    def train_and_evaluate_probes(self, test_dataset=None, test_labels=None):
+        """
+        Trains linear classifiers (probes) on the activations and evaluates their accuracy.
+        The function assumes that activations for positive and negative classes have been captured
+        and stored in self.pos_layer_activations and self.neg_layer_activations respectively.
+        If a dataset object is given, then the probe is trained on the activations and evaluated
+        on this dataset
+
+        Args:
+            test_dataset: A dataset object, optional.
+            test_labels: Corresponding labels for the test dataset, optional.
+        
+        Returns:
+            dict: A dictionary containing accuracy scores for probes on each layer.
+        """
+
+        max_tokens = self.max_tokens
+        batch_size = self.batch_size
+        
+        accuracies = {}
+        train_accuracies = {}
+        auroc_scores = {}
+        layer_names = []  # To store layer names for plotting
+
+        # If a dataset is provided, capture activations for it
+        if test_dataset:
+            test_activations = self.get_last_token_activations(test_dataset)
+
+        # Loop over each layer for which activations have been captured
+        for layer in self.pos_layer_activations:
+            # Get activations from the layer for both classes
+            pos_activations = self.pos_layer_activations[layer]
+            neg_activations = self.neg_layer_activations[layer]
+            
+            # Combine the activations and create labels
+            X = np.vstack((pos_activations, neg_activations))
+            y = np.array([1] * len(pos_activations) + [0] * len(neg_activations))
+            
+            # If a test dataset is provided, use it for evaluation
+            if test_dataset:
+                X_train = X
+                y_train = y
+                X_test = test_activations[layer]
+                y_test = test_labels
+            else:
+                # Otherwise, split data into train and test sets
+                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+            
+            # Train a logistic regression model
+            clf = LogisticRegression(random_state=42, max_iter=1000)
+            clf.fit(X_train, y_train)
+
+            # Predict on the training set and test set and calculate accuracy
+            y_train_pred = clf.predict(X_train)
+            y_test_pred = clf.predict(X_test)
+            train_accuracy = accuracy_score(y_train, y_train_pred)
+            test_accuracy = accuracy_score(y_test, y_test_pred)
+            
+            # Calculate AUROC scores
+            y_train_pred_proba = clf.predict_proba(X_train)[:, 1]
+            y_test_pred_proba = clf.predict_proba(X_test)[:, 1]
+            train_auroc = roc_auc_score(y_train, y_train_pred_proba)
+            test_auroc = roc_auc_score(y_test, y_test_pred_proba)
+
+            # Store accuracies and AUROC scores
+            accuracies[layer] = test_accuracy
+            train_accuracies[layer] = train_accuracy
+            auroc_scores[layer] = (train_auroc, test_auroc)
+            layer_names.append(layer)
+
+        # Plot the accuracies and AUROC scores
+        fig, axs = plt.subplots(3, 1, figsize=(10, 15))  # Adjust subplot to stack vertically
+        axs[0].bar(layer_names, [train_accuracies[l] for l in layer_names], color='lightblue')
+        axs[0].set_title('Training Accuracy')
+        axs[0].set_xlabel('Layer Names')
+        axs[0].set_ylabel('Accuracy')
+        axs[0].set_xticklabels(layer_names, rotation=45, ha="right")  # Rotate labels
+        axs[0].set_ylim(0, 1)  # Set y-axis limits from 0 to 1
+
+        axs[1].bar(layer_names, [accuracies[l] for l in layer_names], color='skyblue')
+        axs[1].set_title('Testing Accuracy')
+        axs[1].set_xlabel('Layer Names')
+        axs[1].set_ylabel('Accuracy')
+        axs[1].set_xticklabels(layer_names, rotation=45, ha="right")  # Rotate labels
+        axs[1].set_ylim(0, 1)  # Set y-axis limits from 0 to 1
+
+        axs[2].bar(layer_names, [auroc_scores[l][1] for l in layer_names], color='green')
+        axs[2].set_title('Test AUROC Score')
+        axs[2].set_xlabel('Layer Names')
+        axs[2].set_ylabel('AUROC Score')
+        axs[2].set_xticklabels(layer_names, rotation=45, ha="right")  # Rotate labels
+        axs[2].set_ylim(0, 1)  # Set y-axis limits from 0 to 1
+
+        plt.tight_layout()
+        plt.show()
+
+        return {'test_accuracy': accuracies, 'train_accuracy': train_accuracies, 'auroc_scores': auroc_scores}
+
 
     
     def calculate_detector_direction(self):
@@ -387,74 +488,7 @@ class LinearFeatureWrapper():
 
         return accuracies
 
-    def train_and_evaluate_probes(self, dataset = None, num_samples = -1):
-        """
-        Trains linear classifiers (probes) on the activations and evaluates their accuracy.
-        The function assumes that activations for positive and negative classes have been captured
-        and stored in self.pos_layer_activations and self.neg_layer_activations respectively.
-        If a dataset object is given, then the probe is trained on the activations and evaluated
-        on this dataset
 
-        Args:
-            dataset: A dataset object.
-        
-        Returns:
-            dict: A dictionary containing accuracy scores for probes on each layer.
-        """
-
-        max_tokens = self.max_tokens
-        batch_size = self.batch_size
-        
-        accuracies = {}
-        layer_names = []  # To store layer names for plotting
-
-        if dataset:
-            test_dataset, labels = dataset.combine_dataset_get_labels(num_samples)
-            test_activations = self.get_last_token_activations(test_dataset)
-
-        # Loop over each layer for which activations have been captured
-        for layer in self.pos_layer_activations:
-            # Get activations from the layer for both classes
-            pos_activations = self.pos_layer_activations[layer]
-            neg_activations = self.neg_layer_activations[layer]
-            
-            # Combine the activations and create labels
-            X = np.vstack((pos_activations, neg_activations))
-            y = np.array([1] * len(pos_activations) + [0] * len(neg_activations))
-            
-            # If dataset is provided, uses dataset for X_test, y_pred
-            if dataset:
-                X_train = X
-                y_train = y
-                X_test = test_activations[layer]
-                y_test = labels
-            else:
-                # Otherwise, split data into train and test sets
-                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
-            
-            # Train a logistic regression model
-            clf = LogisticRegression(random_state=42, max_iter=1000)
-            clf.fit(X_train, y_train)
-            
-
-            # Predict on the test set and calculate accuracy
-            y_pred = clf.predict(X_test)
-            accuracy = accuracy_score(y_test, y_pred)
-            accuracies[layer] = accuracy
-            layer_names.append(layer)  # Append layer name for plotting
-
-        # Plot the accuracies
-        plt.figure(figsize=(10, 5))
-        plt.bar(layer_names, accuracies.values(), color='skyblue')
-        plt.xlabel('Layer Names')
-        plt.ylabel('Accuracy')
-        plt.title('Probing Accuracy Across Layers')
-        plt.xticks(rotation=45)
-        plt.ylim(0, 1)  # Optionally set the y-axis limits to 0-1 for better comparison
-        plt.tight_layout()  # Adjust layout to handle longer layer names
-        plt.show()
-
-        return accuracies
     
 
     
