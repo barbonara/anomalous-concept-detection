@@ -27,14 +27,7 @@ class Dataset:
         self.pos_dataset = []
         self.neg_dataset = []
 
-    def shuffle_datasets(self):
-        """
-        Shuffles the sentences in both the positive and negative datasets to ensure randomness.
-        """
-        random.shuffle(self.pos_dataset)
-        random.shuffle(self.neg_dataset)
-
-    def get_subset_sentences(self, subset_size):
+    def get_pos_neg_dataset(self, subset_size=-1):
         """
         Retrieves a subset of sentences from both the positive and negative datasets.
 
@@ -46,7 +39,8 @@ class Dataset:
             tuple: A tuple containing two lists, one of positive and one of negative sentences.
         """
         # Ensure the sentences are shuffled before getting a subset
-        self.shuffle_datasets()
+        random.shuffle(self.pos_dataset)
+        random.shuffle(self.neg_dataset)
         return (self.pos_dataset[:subset_size], self.neg_dataset[:subset_size])
     
     def load_data(self, path_name, pos_label, neg_label):
@@ -98,6 +92,7 @@ class Dataset:
         """
         return len(self.pos_dataset) + len(self.neg_dataset)
 
+
 class LinearFeatureWrapper():
     """
     A class for wrapping a transformer model to collect activations and explore linear features
@@ -106,9 +101,9 @@ class LinearFeatureWrapper():
     Uses batch processing to avoid issues with large datasets.
     """
 
-    def __init__(self, model_name, dataset_path, pos_labels, neg_labels, memory_saving=False):
+    def __init__(self, model, tokenizer, layers, pos_dataset: list, neg_dataset: list):
         """
-        Initializes the HookedModel with a specified transformer model.
+        Initializes the LinearFeatureWrapper with a specified transformer model.
         
         Note that because of GPU memory issues, the model is loaded first and then 
         get_pos_neg_activations should be called to collect activations for training probes, PCA, etc.
@@ -119,68 +114,27 @@ class LinearFeatureWrapper():
             pos_labels, neg_labels (list): For loading positive and negative examples.
             memory_saving (bool): Implements GPU RAM memory saving measures if activated.
         """
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.model = None
-        self.tokenizer = None
-        self.memory_saving = memory_saving
-        self.layers = []
-        self.layer_indices_to_track = None
-        self.activations = {}
-        self.hook_handles = []
-        self.dataset = Dataset()
-        self.dataset.load_data(dataset_path, pos_labels, neg_labels)
-        self.batch_size = None
-        self.max_tokens = None
-        self.pos_layer_activations = {}
-        self.neg_layer_activations = {}
-        self.direction_layer_vectors = {}
-
-    def set_model_tokenizer(self, model, tokenizer):
         self.model = model
-        self.model.to(self.device)
         self.tokenizer = tokenizer
+        
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model.eval()  # Set model to evaluation mode
+
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
-        
-    def set_layers(self, layers):
-        """
-        Sets the layers to track activations for.
-
-        Args:
-            layers (iterable): An iterable of torch.nn.Module layers to attach hooks to.
-        """
         self.layers = layers
-        if self.layer_indices_to_track is None:
-            self.layer_indices_to_track = range(len(layers))
-        else:
-            self.layer_indices_to_track = self.layer_indices_to_track
+        self.layer_indices_to_track = range(len(self.layers)) # Can change later
+        self.activations = {}
+        self.hook_handles = []
+        self.batch_size = None
+        self.max_tokens = None
+        self.pos_dataset = pos_dataset
+        self.neg_dataset = neg_dataset
+        self.pos_layer_activations = {}
+        self.neg_layer_activations = {}
+        self.direction_layer_vectors = {}
             
-
-    def setup_hooks(self):
-        """
-        Sets up forward hooks on specified layers to capture activations.
-
-        Args:
-            layers (iterable): An iterable of torch.nn.Module layers to attach hooks to.
-        """
-        
-        def get_activation(name):
-            """Defines a hook function that captures activations."""
-            def hook(model, input, output):
-                self.activations[name] = output[0].cpu().detach()
-            return hook
-
-        for j, layer in enumerate(self.layers):
-            if j in self.layer_indices_to_track:
-                handle = layer.register_forward_hook(get_activation(f'Layer_{j}'))
-                self.hook_handles.append(handle)
-
-    def remove_hooks(self):
-        """Removes all hooks from the model."""
-        for handle in self.hook_handles:
-            handle.remove()
     
     def get_last_token_activations(self, dataset: list):
         """
@@ -195,6 +149,31 @@ class LinearFeatureWrapper():
         Returns:
             dict: A dictionary containing layer-wise activations for the last tokens.
         """
+
+        def setup_hooks():
+            """
+            Sets up forward hooks on specified layers to capture activations.
+
+            Args:
+                layers (iterable): An iterable of torch.nn.Module layers to attach hooks to.
+            """
+            
+            def get_activation(name):
+                """Defines a hook function that captures activations."""
+                def hook(model, input, output):
+                    self.activations[name] = output[0].cpu().detach()
+                return hook
+
+            for j, layer in enumerate(self.layers):
+                if j in self.layer_indices_to_track:
+                    handle = layer.register_forward_hook(get_activation(f'Layer_{j}'))
+                    self.hook_handles.append(handle)
+
+        def remove_hooks():
+            """Removes all hooks from the model."""
+            for handle in self.hook_handles:
+                handle.remove()
+
         # Set max_tokens to be the largest number of tokens in dataset if not provided.
 
         batch_size = self.batch_size
@@ -228,11 +207,11 @@ class LinearFeatureWrapper():
             if self.device == 'cuda':
                 torch.cuda.empty_cache()  # Clear unused memory
 
-            self.setup_hooks()
+            setup_hooks()
             with torch.no_grad():
                 outputs = self.model(**inputs)
 
-            self.remove_hooks()
+            remove_hooks()
 
             last_token_indices = (inputs['attention_mask'].sum(dim=1) - 1).tolist()
 
@@ -251,7 +230,7 @@ class LinearFeatureWrapper():
 
         return layer_last_token_activations
     
-    def get_pos_neg_activations(self, num_samples):
+    def get_pos_neg_activations(self):
         """
         Calculate the detector direction vectors for each layer. Stores result in class.
         Uses self.dataset.
@@ -266,11 +245,9 @@ class LinearFeatureWrapper():
         """
         batch_size = self.batch_size
         max_tokens = self.max_tokens
-        dataset = self.dataset
-        pos_dataset, neg_dataset = dataset.get_subset_sentences(num_samples)
 
-        self.pos_layer_activations = self.get_last_token_activations(pos_dataset)
-        self.neg_layer_activations = self.get_last_token_activations(neg_dataset)
+        self.pos_layer_activations = self.get_last_token_activations(self.pos_dataset)
+        self.neg_layer_activations = self.get_last_token_activations(self.neg_dataset)
 
     
     def calculate_detector_direction(self):
@@ -354,75 +331,6 @@ class LinearFeatureWrapper():
 
     def evaluate_MD_detector(self, dataset: list, labels):
         """
-
-        Evaluate the detector's accuracy for each layer. And plot results.
-
-        Args:
-            activations (dict): A dictionary containing activations for each layer.
-            direction_vectors (dict): A dictionary containing direction vectors for each layer.
-            labels (list): A list of labels corresponding to the activations and direction vectors.
-            layer_indices (list): A list of layer indices to evaluate.
-
-        Returns:
-            Accuracies
-        """
-        batch_size = self.batch_size
-        max_tokens = self.max_tokens
-        def calculate_accuracy(activations, detection_vectors, labels):
-            """
-            Calculate the accuracy of classification where the sign of the dot product of activations and detection vectors
-            should correspond to binary labels. Positive values predict label '1' and negative values predict label '0'.
-
-            Parameters:
-            - activations (np.array): Array of activations from which predictions are derived.
-            - labels (list of int): Corresponding list of binary labels (1s and 0s) to compare against predictions.
-            - detection_vectors (np.array): Vector used to transform activations into a scalar prediction value.
-
-            Returns:
-            - float: The accuracy of the predictions, represented as a fraction between 0 and 1.
-            """
-            # Calculate values by projecting activations onto the detection vectors
-            values = np.dot(activations, detection_vectors)
-            correct_count = 0
-            total_count = len(values)
-
-            for value, label in zip(values, labels):
-                # Predict 1 if value is positive, 0 if negative
-                predicted_label = 1 if value >= 0 else 0
-                # Increment correct count if prediction matches the label
-                if predicted_label == label:
-                    correct_count += 1
-
-            # Calculate accuracy as the proportion of correct predictions
-            accuracy = correct_count / total_count
-            return accuracy
-        
-        activations = self.get_last_token_activations(dataset)
-        accuracies = {}
-        layer_names = list(self.pos_layer_activations.keys())
-
-        for layer_name in layer_names:
-            # Calculate accuracy for the current layer
-            accuracy = calculate_accuracy(activations[layer_name], self.direction_layer_vectors[layer_name], labels)
-            accuracies[layer_name] = accuracy
-
-        plt.figure(figsize=(10, 5))
-        # layer_names_sorted = sorted(accuracies.keys()) # Optional: Sort layer names if needed
-        accuracy_values = [accuracies[name] for name in layer_names]
-
-        # Create a bar plot of accuracies
-        plt.bar(layer_names, accuracy_values, color='blue')
-        plt.xlabel('Layer Names')
-        plt.ylabel('Accuracy')
-        plt.title('Accuracy per Layer')
-        plt.xticks(rotation=45)
-        plt.ylim(0, 1)  # Set the y-axis limits from 0 to 1
-        plt.tight_layout() # Adjust layout to make room for rotated x-axis labels
-        plt.show()
-
-        return accuracies
-    def evaluate_MD_detector(self, dataset: list, labels):
-        """
         Evaluate the detector's accuracy for each layer based on the mean direction vector. Plots the results.
 
         Args:
@@ -496,6 +404,7 @@ class LinearFeatureWrapper():
 
         max_tokens = self.max_tokens
         batch_size = self.batch_size
+        
         accuracies = {}
         layer_names = []  # To store layer names for plotting
 
@@ -548,6 +457,7 @@ class LinearFeatureWrapper():
         return accuracies
     
 
+    
     
 
 
