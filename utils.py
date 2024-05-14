@@ -135,6 +135,7 @@ class LinearFeatureWrapper():
         self.pos_layer_activations = {}
         self.neg_layer_activations = {}
         self.direction_layer_vectors = {}
+        self.test_activations = {}
             
     
     def get_last_token_activations(self, dataset: list):
@@ -251,7 +252,7 @@ class LinearFeatureWrapper():
         self.neg_layer_activations = self.get_last_token_activations(self.neg_dataset[:dataset_size])
     
     
-    def train_and_evaluate_probes(self, test_dataset=None, test_labels=None, max_iter = 1000):
+    def train_and_evaluate_probes(self, test_dataset=None, test_labels=None, max_iter = 1000, use_old_test_dataset = True):
         """
         Trains linear classifiers (probes) on the activations and evaluates their accuracy.
         The function assumes that activations for positive and negative classes have been captured
@@ -270,14 +271,24 @@ class LinearFeatureWrapper():
         max_tokens = self.max_tokens
         batch_size = self.batch_size
         
-        accuracies = {}
-        train_accuracies = {}
+        test_accuracies = {}
+        test_new_accuracies = {}
         auroc_scores = {}
         layer_names = []  # To store layer names for plotting
 
+        no_new_dataset = True
+
         # If a dataset is provided, capture activations for it
-        if test_dataset:
-            test_activations = self.get_last_token_activations(test_dataset)
+        if test_dataset and test_labels:
+            no_new_dataset = False
+            if use_old_test_dataset and self.test_activations:
+                test_activations = self.test_activations
+            else:
+                self.test_activations = self.get_last_token_activations(test_dataset)
+                test_activations = self.test_activations
+
+
+
 
         # Loop over each layer for which activations have been captured
         for layer in self.pos_layer_activations:
@@ -290,42 +301,47 @@ class LinearFeatureWrapper():
             y = np.array([1] * len(pos_activations) + [0] * len(neg_activations))
             
             # If a test dataset is provided, use it for evaluation
-            if test_dataset:
-                X_train = X
-                y_train = y
-                X_test = test_activations[layer]
-                y_test = test_labels
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+            if not no_new_dataset:
+                X_new_test = test_activations[layer]
+                y_new_test = test_labels
             else:
                 # Otherwise, split data into train and test sets
-                X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+                X_new_test = X_test
+                y_new_test = y_test
             
             # Train a logistic regression model
             clf = LogisticRegression(random_state=42, max_iter=max_iter)
             clf.fit(X_train, y_train)
 
             # Predict on the training set and test set and calculate accuracy
-            y_train_pred = clf.predict(X_train)
             y_test_pred = clf.predict(X_test)
-            train_accuracy = accuracy_score(y_train, y_train_pred)
+            y_test_new_pred = clf.predict(X_new_test)
             test_accuracy = accuracy_score(y_test, y_test_pred)
+            test_new_accuracy = accuracy_score(y_new_test, y_test_new_pred)
             
             # Calculate AUROC scores
-            y_train_pred_proba = clf.predict_proba(X_train)[:, 1]
             y_test_pred_proba = clf.predict_proba(X_test)[:, 1]
-            train_auroc = roc_auc_score(y_train, y_train_pred_proba)
+            y_test_new_pred_proba = clf.predict_proba(X_new_test)[:, 1]
             test_auroc = roc_auc_score(y_test, y_test_pred_proba)
+            test_new_auroc = roc_auc_score(y_new_test, y_test_new_pred_proba)
 
             # Store accuracies and AUROC scores
-            accuracies[layer] = test_accuracy
-            train_accuracies[layer] = train_accuracy
-            auroc_scores[layer] = (train_auroc, test_auroc)
+            test_accuracies[layer] = test_accuracy
+            test_new_accuracies[layer] = test_new_accuracy
+            auroc_scores[layer] = (test_auroc, test_new_auroc)
             layer_names.append(layer)
 
             print(f"Trained probe for layer: {layer}")
 
         # Plot the accuracies and AUROC scores
+        if no_new_dataset:
+            scores_to_plot = ['Test Accuracy', 'Test AUROC Score']
+        else:
+            scores_to_plot = ['Test Accuracy', 'Test Accuracy New Dataset', 'Test AUROC Score New Dataset']
         fig, axs = plt.subplots(3, 1, figsize=(10, 15))
-        for i, (metric, title) in enumerate(zip([train_accuracies, accuracies, auroc_scores], ['Training Accuracy', 'Testing Accuracy', 'Test AUROC Score'])):
+        for i, (metric, title) in enumerate(zip([test_accuracies, test_new_accuracies, auroc_scores], scores_to_plot)):
             values = [metric[l][1] if isinstance(metric[l], tuple) else metric[l] for l in layer_names]  # Extract correct values for AUROC if needed
             axs[i].bar(layer_names, values, color=['lightblue', 'skyblue', 'green'][i])
             axs[i].set_title(title)
@@ -337,7 +353,112 @@ class LinearFeatureWrapper():
         plt.tight_layout()
         plt.show()
 
-        return {'test_accuracy': accuracies, 'train_accuracy': train_accuracies, 'auroc_scores': auroc_scores}
+        return {'test_accuracy': test_accuracies, 'test_new_accuracy': test_new_accuracies, 'auroc_scores': auroc_scores}
+
+    def train_and_evaluate_probes(self, test_dataset=None, test_labels=None, max_iter=1000, use_old_test_dataset=True):
+        """
+        Trains linear classifiers (probes) on the activations and evaluates their accuracy.
+        The function assumes that activations for positive and negative classes have been captured
+        and stored in self.pos_layer_activations and self.neg_layer_activations respectively.
+        If a dataset object is given, then the probe is trained on the activations and evaluated
+        on this dataset
+
+        Args:
+            test_dataset: A dataset object, optional.
+            test_labels: Corresponding labels for the test dataset, optional.
+            max_iter: Maximum iterations for the logistic regression.
+            use_old_test_dataset: Boolean flag to indicate whether to use old test activations.
+        
+        Returns:
+            dict: A dictionary containing accuracy scores for probes on each layer.
+        """
+
+        max_tokens = self.max_tokens
+        batch_size = self.batch_size
+        
+        test_accuracies = {}
+        test_new_accuracies = {}
+        auroc_scores = {}
+        layer_names = []  # To store layer names for plotting
+
+        no_new_dataset = True
+
+        # If a dataset is provided, capture activations for it
+        if test_dataset and test_labels:
+            no_new_dataset = False
+            if use_old_test_dataset and self.test_activations:
+                test_activations = self.test_activations
+            else:
+                self.test_activations = self.get_last_token_activations(test_dataset)
+                test_activations = self.test_activations
+
+        # Loop over each layer for which activations have been captured
+        for layer in self.pos_layer_activations:
+            # Get activations from the layer for both classes
+            pos_activations = self.pos_layer_activations[layer]
+            neg_activations = self.neg_layer_activations[layer]
+            
+            # Combine the activations and create labels
+            X = np.vstack((pos_activations, neg_activations))
+            y = np.array([1] * len(pos_activations) + [0] * len(neg_activations))
+            
+            # Split data into train and test sets
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+            if not no_new_dataset:
+                X_new_test = test_activations[layer]
+                y_new_test = test_labels
+            else:
+                # Otherwise, split data into train and test sets
+                X_new_test = X_test
+                y_new_test = y_test
+            
+            # Train a logistic regression model
+            clf = LogisticRegression(random_state=42, max_iter=max_iter)
+            clf.fit(X_train, y_train)
+
+            # Predict on the test sets and calculate accuracy
+            y_test_pred = clf.predict(X_test)
+            y_test_new_pred = clf.predict(X_new_test)
+            test_accuracy = accuracy_score(y_test, y_test_pred)
+            test_new_accuracy = accuracy_score(y_new_test, y_test_new_pred)
+            
+            # Calculate AUROC scores
+            y_test_pred_proba = clf.predict_proba(X_test)[:, 1]
+            y_test_new_pred_proba = clf.predict_proba(X_new_test)[:, 1]
+            test_auroc = roc_auc_score(y_test, y_test_pred_proba)
+            test_new_auroc = roc_auc_score(y_new_test, y_test_new_pred_proba)
+
+            # Store accuracies and AUROC scores
+            test_accuracies[layer] = test_accuracy
+            test_new_accuracies[layer] = test_new_accuracy
+            auroc_scores[layer] = (test_auroc, test_new_auroc)
+            layer_names.append(layer)
+
+            print(f"Trained probe for layer: {layer}")
+
+        # Plot the accuracies and AUROC scores
+        if no_new_dataset:
+            scores_to_plot = ['Test Accuracy', 'Test AUROC Score']
+            metrics_to_plot = [test_accuracies, auroc_scores]
+        else:
+            scores_to_plot = ['Test Accuracy', 'Test Accuracy New Dataset', 'Test AUROC Score New Dataset']
+            metrics_to_plot = [test_accuracies, test_new_accuracies, auroc_scores]
+
+        fig, axs = plt.subplots(len(scores_to_plot), 1, figsize=(10, 5 * len(scores_to_plot)))
+        for i, (metric, title) in enumerate(zip(metrics_to_plot, scores_to_plot)):
+            values = [metric[layer][1] if isinstance(metric[layer], tuple) else metric[layer] for layer in layer_names]  # Extract correct values for AUROC if needed
+            axs[i].bar(layer_names, values, color=['lightblue', 'skyblue', 'green'][i % 3])
+            axs[i].set_title(title)
+            axs[i].set_xlabel('Layer Names')
+            axs[i].set_ylabel('Accuracy' if 'Accuracy' in title else 'AUROC Score')
+            axs[i].tick_params(axis='x', rotation=45)  # Rotate labels
+            axs[i].set_ylim(0, 1)
+
+        plt.tight_layout()
+        plt.show()
+
+        return {'test_accuracy': test_accuracies, 'test_new_accuracy': test_new_accuracies, 'auroc_scores': auroc_scores}
 
 
     
